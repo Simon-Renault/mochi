@@ -1,0 +1,52 @@
+@import url("https://use.typekit.net/dqp0osx.css");
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;1,400&display=swap");
+
+//Global css variables
+:root {
+	--grid-total-width: 100vw;
+
+	// Fonts
+	--font-family: "Karla", Helvetica, Arial, Tahoma, sans-serif;
+	--font-family-serif: "Span", serif;
+
+	// Colors
+	--white: #ffffff;
+
+	--off-white-1: #f9f9f8;
+	--off-white-2: #f4f4f2;
+	--off-white-3: #e7e7e1;
+
+	--grey-1: #93928f;
+	--grey-2: #65635f;
+	--grey-3: #353431;
+
+	--black: #161412;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: var(--font-family);
+}
+
+body {
+	background-color: var(--white);
+	color: var(--black);
+}
+
+@media (prefers-color-scheme: dark) {
+	//dark theme
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	text-decoration: none;
+	color: inherit;
+}
