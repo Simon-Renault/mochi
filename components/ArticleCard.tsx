@@ -16,7 +16,8 @@ const ArticleCard = (props: IArticleCardProps): JSX.Element => {
 				<div className={css.articleCard}>
 					<div className={css.imageContainer}>
 						<Image
-							{...cover}
+							src={cover.src}
+							blurDataURL={cover.blurDataURL}
 							layout="fill"
 							alt="Picture of the author"
 							placeholder="blur"

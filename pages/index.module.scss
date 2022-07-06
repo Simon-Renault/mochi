@@ -41,6 +41,7 @@
 		position: absolute;
 		mix-blend-mode: darken;
 		object-fit: cover;
+		transition: ease-in 0.3s;
 	}
 }
 .top {
@@ -73,4 +74,19 @@
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	gap: 30px;
+}
+
+.artwork_page {
+	display: grid;
+	grid-template-columns: 3fr 400px;
+	gap: 50px;
+
+	.details {
+		border: 1px solid var(--off-white-2);
+		height: 300px;
+		margin-bottom: 30px;
+		position: sticky;
+		top: 120px;
+		border-radius: 12px;
+	}
 }

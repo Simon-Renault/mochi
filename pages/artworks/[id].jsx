@@ -18,12 +18,22 @@ export default function Post({ page, blocks }) {
             </Head>
             <main>
                 <PageSection>
-                    <Text text={page.properties.Name.title} />
+                    <h1>
+                        <Text text={page.properties.Name.title} />
+                    </h1>
+
                     <div className={css.image_container}>
                         <img src={page.properties.Image.files[0].file.url} />
                     </div>
                 </PageSection>
-                <PageSection>{RenderPage(blocks)}</PageSection>
+                <PageSection>
+                    <div className={css.artwork_page}>
+                        <div> {RenderPage(blocks)}</div>
+                        <div>
+                            <div className={css.details}> </div>
+                        </div>
+                    </div>
+                </PageSection>
             </main>
         </>
     );

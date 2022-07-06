@@ -84,7 +84,6 @@ export const getStaticProps = async () => {
 		const { base64, img } = await getPlaiceholder(url, {
 			size: 10,
 		});
-		console.log(img);
 
 		return {
 			...img,
@@ -105,14 +104,14 @@ export const getStaticProps = async () => {
 	};
 
 	const formatDrawing = async (post: any): Promise<IPost> => {
-		const { Image } = post.properties;
+		const { Image, Name } = post.properties;
 		const cover = await extractImage(Image.files[0].file.url);
 
 		return {
 			cover,
 			id: post.id,
 			path: `/artworks/${post.id}`,
-			title: "",
+			title: Name.title[0].plain_text,
 		};
 	};
 
