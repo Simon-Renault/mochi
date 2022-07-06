@@ -33,6 +33,7 @@ export default function Home({ posts, drawings }: IHomeProps) {
 							alt="Picture of the author"
 							layout="fill"
 							placeholder="blur"
+							quality={20}
 						/>
 					</div>
 					<div className={css.divider}></div>
