@@ -1,31 +1,32 @@
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import { drawingDatabaseId } from "../index";
+import styles from "../blog-posts/post.module.scss";
 import RenderPage, { Text } from "../../lib/notionPage";
 import PageSection from "@components/PageSection";
-import css from "../index.module.scss";
 
-export default function Post({ page, blocks }) {
+export default function Post({ page, blocks }: any) {
 	if (!page || !blocks) {
 		return <div />;
 	}
 
 	return (
-		<>
+		<div>
 			<Head>
 				<title>{page.properties.Name.title[0].plain_text}</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main>
-				<PageSection>
+
+			<img src={page.properties.Image.files[0].file.url} />
+
+			<PageSection>{RenderPage(blocks)}</PageSection>
+
+			<article className={styles.container}>
+				<h1 className={styles.name}>
 					<Text text={page.properties.Name.title} />
-					<div className={css.image_container}>
-						<img src={page.properties.Image.files[0].file.url} />
-					</div>
-				</PageSection>
-				<PageSection>{RenderPage(blocks)}</PageSection>
-			</main>
-		</>
+				</h1>
+			</article>
+		</div>
 	);
 }
 
