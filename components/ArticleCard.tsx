@@ -1,25 +1,26 @@
 import React from "react";
 import Link from "next/link";
 import css from "./ArticleCard.module.scss";
+import Image from "next/image";
+import { IPost } from "@lib/types";
 
 interface IArticleCardProps {
-	path: string;
-	image: {
-		url: string;
-		alt?: string;
-	};
-	title: string;
-	date?: string;
+	post: IPost;
 }
 
 const ArticleCard = (props: IArticleCardProps): JSX.Element => {
-	const { image, title, path } = props;
+	const { cover, path } = props.post;
 	return (
 		<Link href={path}>
 			<a>
 				<div className={css.articleCard}>
 					<div className={css.imageContainer}>
-						<img src={image.url} width="100%" alt="" />
+						<Image
+							{...cover}
+							layout="fill"
+							alt="Picture of the author"
+							placeholder="blur"
+						/>
 					</div>
 					<div className={css.description}>
 						<p className={css.date}>Oct 24, 2021</p>

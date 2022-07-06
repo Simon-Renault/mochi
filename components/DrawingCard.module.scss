@@ -47,15 +47,12 @@
 		overflow: hidden;
 		flex-grow: 0;
 		transition: opacity 0.2s ease;
-		img {
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			height: 100%;
+		width: 100%;
+		min-height: 40px;
+
+		> span {
+			transform: scale(1, 1.05);
 			mix-blend-mode: darken;
-			object-fit: cover;
-			object-position: center;
 		}
 	}
 

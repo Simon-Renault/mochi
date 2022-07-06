@@ -69,30 +69,6 @@
 	flex-direction: column;
 }
 
-.title_section {
-	max-width: 700px;
-	margin-bottom: 70px;
-	h2 {
-		font-family: var(--font-family-serif);
-		font-style: normal;
-		font-weight: 400;
-		font-size: 46px;
-		line-height: 46px;
-
-		letter-spacing: -2px;
-		text-transform: capitalize;
-
-		color: var(--black);
-		margin-bottom: 20px;
-	}
-	p {
-		font-style: normal;
-		font-size: 18px;
-		line-height: 36px;
-		color: var(--grey-2);
-	}
-}
-
 .test {
 	display: grid;
 	grid-template-columns: 1fr 2fr;

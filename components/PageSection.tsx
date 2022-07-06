@@ -16,5 +16,6 @@ export default function PageSection({
 		elevated && css.elevated,
 		className,
 	].join(" ");
+
 	return <div className={classNames}>{children}</div>;
 }

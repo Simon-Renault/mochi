@@ -1,25 +1,25 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import css from "./DrawingCard.module.scss";
+import { IDrawing } from "@lib/types";
 
 interface IDrawingCardProps {
-	path: string;
-	image: {
-		url: string;
-		alt?: string;
-	};
-	title: string;
-	date?: string;
+	drawing: IDrawing;
 }
 
 const DrawingCard = (props: IDrawingCardProps): JSX.Element => {
-	const { image, title, path } = props;
-	console.log(image.url);
+	const { title, path, cover } = props.drawing;
 	return (
 		<Link href={path}>
 			<a className={css.drawingCard}>
 				<div className={css.imageContainer}>
-					<img src={image.url} width="100%" alt="" loading="lazy" />
+					<Image
+						className={css.image}
+						{...cover}
+						alt="Picture of the author"
+						placeholder="blur"
+					/>
 				</div>
 				<div className={css.description}>
 					<p className={css.title}>{title}</p>
