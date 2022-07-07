@@ -44,49 +44,61 @@
 		transition: ease-in 0.3s;
 	}
 }
-.top {
+.section_top {
+	padding-top: 50px;
 	position: relative;
 	background-image: url("/lines.svg");
 	background-repeat: no-repeat;
 	background-position: center;
+	.divider {
+		border-bottom: 2px solid var(--off-white-2);
+		margin-top: 70px;
+	}
+}
+.section_artworks {
+	padding-top: 0;
+	.gallery {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 100px 70px;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
-.divider {
-	border-bottom: 2px solid var(--off-white-2);
-	margin-top: 50px;
-}
-
-.gallery {
-	position: relative;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 100px 70px;
-	align-items: center;
-	justify-content: center;
-}
 .list {
 	display: flex;
 	gap: 30px;
 	flex-direction: column;
 }
 
-.test {
+.columns {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	gap: 30px;
 }
 
-.artwork_page {
+.about {
 	display: grid;
-	grid-template-columns: 3fr 400px;
-	gap: 50px;
+	grid-template-columns: 2fr 1fr;
+	gap: 100px;
+}
 
-	.details {
-		border: 1px solid var(--off-white-2);
-		height: 300px;
-		margin-bottom: 30px;
-		position: sticky;
-		top: 120px;
-		border-radius: 12px;
+.about_text {
+	border-radius: 12px;
+	color: var(--grey-1);
+	font-weight: 200;
+	font-size: 18px;
+	line-height: 30px;
+}
+
+.about_image {
+	border-radius: 12px;
+	overflow: hidden;
+	width: 100%;
+	height: 300px;
+	img {
+		object-fit: cover;
 	}
 }

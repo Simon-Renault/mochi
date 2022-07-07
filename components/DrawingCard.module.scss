@@ -4,6 +4,7 @@
 	min-height: 200px;
 	width: 21%;
 	position: relative;
+	transition: all 0.3s ease;
 
 	&:nth-child(5n + 1) {
 		//border: 1px solid blue;
@@ -46,7 +47,7 @@
 		border-radius: 10px;
 		overflow: hidden;
 		flex-grow: 0;
-		transition: opacity 0.2s ease;
+		transition: all 0.3s ease;
 		width: 100%;
 		min-height: 40px;
 

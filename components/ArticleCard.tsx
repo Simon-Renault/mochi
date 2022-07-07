@@ -21,7 +21,7 @@ const ArticleCard = (props: IArticleCardProps): JSX.Element => {
 							layout="fill"
 							alt="Picture of the author"
 							placeholder="blur"
-							quality={20}
+							unoptimized={true}
 						/>
 					</div>
 					<div className={css.description}>

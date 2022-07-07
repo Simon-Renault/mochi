@@ -28,7 +28,7 @@
         "components/header.jsx",
         "components/PageSection.jsx",
         "pages/artworks/[id].jsx",
-        "pages/blog-posts/[id].jsx"
+        "pages/blog/[id].jsx"
     ],
     "exclude": ["node_modules"]
 }

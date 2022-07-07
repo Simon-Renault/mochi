@@ -3,7 +3,7 @@ import css from "./PageSection.module.scss";
 interface IPageSection {
 	elevated?: boolean;
 	className?: string;
-	children?: JSX.Element | JSX.Element[];
+	children?: JSX.Element | JSX.Element[] | string;
 }
 
 export default function PageSection({

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import { drawingDatabaseId } from "../index";
-import styles from "../blog-posts/post.module.scss";
+import styles from "./post.module.scss";
 import RenderPage, { Text } from "../../lib/notionPage";
 import PageSection from "@components/PageSection";
 

@@ -1,0 +1,73 @@
+.artwork_page {
+	display: grid;
+	grid-template-columns: 3fr 400px;
+	gap: 50px;
+
+	.details {
+		border: 1px solid var(--off-white-2);
+		height: 300px;
+		margin-bottom: 30px;
+		position: sticky;
+		top: 120px;
+		border-radius: 12px;
+	}
+}
+
+.image_container {
+	position: relative;
+	overflow: hidden;
+	margin-top: 30px;
+	background-color: var(--off-white-2);
+	border-radius: 12px;
+	height: 500px;
+	width: 100%;
+	img {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		mix-blend-mode: darken;
+		object-fit: cover;
+		transition: ease-in 0.3s;
+	}
+}
+
+.top {
+	padding-bottom: 0;
+}
+
+.content {
+	padding-top: 70px;
+}
+
+.artwork_title {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 60px;
+	.id {
+		font-weight: 200;
+		font-size: 16px;
+		line-height: 26px;
+		margin-left: 10px;
+		color: var(--grey-1);
+		margin-bottom: 10px;
+	}
+	&_inner {
+		display: flex;
+		align-items: baseline;
+		.title {
+			font-family: var(--font-family-serif);
+			font-weight: 600;
+			font-size: 70px;
+			line-height: 62px;
+		}
+		.date {
+			font-weight: 200;
+			font-size: 22px;
+			line-height: 26px;
+			margin-left: 10px;
+			color: var(--grey-1);
+		}
+	}
+}

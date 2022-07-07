@@ -2,12 +2,14 @@ import PageSection from "@components/PageSection";
 import ArticleCard from "@components/ArticleCard";
 import DrawingCard from "@components/DrawingCard";
 import TitleSection from "@components/TitleSection";
+import Button from "@components/Button";
 import { getDatabase } from "../lib/notion";
 import css from "./index.module.scss";
 import Image from "next/image";
 import cover from "@images/cover.jpg";
 import { getPlaiceholder } from "plaiceholder";
 import { IPost, IDrawing, IImage } from "@lib/types";
+import { ArrowRight } from "react-feather";
 
 export const drawingDatabaseId = process.env.NOTION_DRAWING_DATABASE_ID;
 export const blogPostsDatabaseId = process.env.NOTION_BLOG_DATABASE_ID;
@@ -20,7 +22,7 @@ interface IHomeProps {
 export default function Home({ posts, drawings }: IHomeProps) {
 	return (
 		<main className={css.container}>
-			<PageSection className={css.top}>
+			<PageSection className={css.section_top}>
 				<div className={css.greetings}>
 					<p className={css.welcome}>Welcome</p>
 					<p className={css.heading}>
@@ -39,7 +41,7 @@ export default function Home({ posts, drawings }: IHomeProps) {
 					<div className={css.divider}></div>
 				</div>
 			</PageSection>
-			<PageSection>
+			<PageSection className={css.section_artworks}>
 				<TitleSection
 					title="Artworks"
 					description="	Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -56,14 +58,42 @@ export default function Home({ posts, drawings }: IHomeProps) {
 			</PageSection>
 			<PageSection elevated={true}>
 				<TitleSection title="About me" />
+				<div className={css.about}>
+					<div className={css.about_text}>
+						Digital is a customizable Super template designed to
+						help digital creators feature projects, writing, and
+						more. Make Digital your own by changing background,
+						text, and accent colors with ease. Digital is built by
+						Matt Downey — a digital creator himself who is heavily
+						involved in design, technology, crypto, and mindset. The
+						images for all projects and articles were kindly
+						licensed by Christos.
+						<Button>
+							Read more <ArrowRight size={16} />
+						</Button>
+					</div>
+					<div className={css.about_image}>
+						<img
+							src="/images/about.png"
+							width="100%"
+							height="100%"
+						/>
+					</div>
+				</div>
 			</PageSection>
 			<PageSection>
-				<div className={css.test}>
-					<TitleSection
-						title="Articles"
-						description="Sometimes I let my mind wander and decide to write
+				<div className={css.columns}>
+					<div>
+						<TitleSection
+							title="Articles"
+							description="Sometimes I let my mind wander and decide to write
 					about various topics."
-					/>
+						/>
+						<Button>
+							Explore all <ArrowRight size={16} />
+						</Button>
+					</div>
+
 					<div className={css.list}>
 						{posts.map((post) => {
 							return <ArticleCard post={post} key={post.id} />;
@@ -71,7 +101,6 @@ export default function Home({ posts, drawings }: IHomeProps) {
 					</div>
 				</div>
 			</PageSection>
-			<PageSection elevated={true}></PageSection>
 		</main>
 	);
 }

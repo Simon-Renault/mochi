@@ -19,7 +19,7 @@ const DrawingCard = (props: IDrawingCardProps): JSX.Element => {
 						{...cover}
 						alt="Picture of the author"
 						placeholder="blur"
-						quality={20}
+						unoptimized={true}
 					/>
 				</div>
 				<div className={css.description}>
