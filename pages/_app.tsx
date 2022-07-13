@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import Head from "@components/Head";
-import Header from "@components/header";
+import Header from "@components/nav/Header";
 import Footer from "@components/Footer";
-import "../styles/globals.scss";
+import "../styles/main.scss";
 import css from "./_app.module.scss";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {

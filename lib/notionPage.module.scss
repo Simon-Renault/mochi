@@ -5,21 +5,19 @@
 	font-size: 18px;
 
 	h1 {
-		font-size: 32px;
-		font-family: var(--font-family-serif);
+		@include H1;
 	}
 	h2 {
-		font-size: 40px;
-		font-family: var(--font-family-serif);
-		margin-bottom: 20px;
+		@include H2;
 	}
 	h3 {
-		font-size: 32px;
-		font-family: var(--font-family-serif);
-		margin-bottom: 20px;
+		@include H3;
+	}
+	h4 {
+		@include H4;
 	}
 	p {
-		color: var(--grey-2);
+		@include TextBase;
 	}
 
 	img {

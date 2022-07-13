@@ -3,6 +3,7 @@ import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import { drawingDatabaseId } from "../index";
 import RenderPage, { Text } from "@lib/notionPage";
 import PageSection from "@components/PageSection";
+import BuySection from "@components/shop/BuySection";
 import css from "./artworks.module.scss";
 
 export default function Post({ page, blocks }) {
@@ -27,16 +28,21 @@ export default function Post({ page, blocks }) {
                             <p className={css.date}>2020</p>
                         </div>
                     </div>
-
-                    <div className={css.image_container}>
-                        <img src={page.properties.Image.files[0].file.url} />
+                    <div className={css.banner}>
+                        <div className={css.image_container}>
+                            <img
+                                src={page.properties.Image.files[0].file.url}
+                            />
+                        </div>
                     </div>
                 </PageSection>
+
                 <PageSection className={css.content}>
                     <div className={css.artwork_page}>
-                        <div> {RenderPage(blocks)}</div>
-                        <div>
-                            <div className={css.details}> </div>
+                        {RenderPage(blocks)}
+
+                        <div className={css.sidebar}>
+                            <BuySection />
                         </div>
                     </div>
                 </PageSection>

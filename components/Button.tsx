@@ -10,7 +10,7 @@ import css from "./Button.module.scss";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	href?: string;
 	className?: string;
-	variant?: "flat" | "slim";
+	variant?: "flat" | "outlined";
 	active?: boolean;
 	type?: "submit" | "reset" | "button";
 	Component?: string | JSXElementConstructor<any>;
@@ -32,12 +32,11 @@ const Button: React.FC<ButtonProps> = forwardRef((props) => {
 		Component = "button",
 		...rest
 	} = props;
-	const ref = useRef<typeof Component>(null);
 
 	const rootClassName = cn(
 		css.root,
 		{
-			[css.slim]: variant === "slim",
+			[css.outlined]: variant === "outlined",
 			[css.loading]: loading,
 			[css.disabled]: disabled,
 		},

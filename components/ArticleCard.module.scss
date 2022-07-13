@@ -1,6 +1,11 @@
 .articleCard {
-	display: flex;
-	min-height: 200px;
+	display: grid;
+	grid-template-rows: 200px;
+	@media (min-width: 480px) {
+		grid-template-rows: initial;
+		grid-template-columns: 1fr 1fr;
+		min-height: 200px;
+	}
 
 	&:hover {
 		.imageContainer {
@@ -10,10 +15,9 @@
 
 	.imageContainer {
 		position: relative;
-		padding-bottom: 25%;
+		padding-bottom: 20%;
 		background: var(--off-white-2);
 		background-size: cover;
-		width: 60%;
 		border-radius: 10px;
 		overflow: hidden;
 		flex-grow: 0;
@@ -32,26 +36,23 @@
 	}
 
 	.description {
-		padding: 40px;
+		padding: 20px 0 20px 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 
+		@media (min-width: 480px) {
+			padding: 35px 20px 35px 40px;
+		}
+
 		.date {
-			font-family: var(--font-family);
-			color: var(--grey-1);
-			font-size: 14px;
+			@include subtitle;
 			margin-bottom: 10px;
-			font-weight: 300;
-			width: 30%;
 		}
 		.title {
-			font-family: var(--font-family-serif);
-			font-size: 22px;
-			line-height: 1.5em;
-			font-weight: 400;
-			width: 80%;
+			@include H4;
 			padding-bottom: 20px;
+			margin-bottom: 0;
 		}
 	}
 }

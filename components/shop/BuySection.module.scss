@@ -1,0 +1,36 @@
+.card {
+	border-radius: 12px;
+	border: 1px solid var(--off-white-2);
+	padding: 30px;
+	&_title {
+		@include H4;
+	}
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.divider {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	@include subtitle;
+	gap: 20px;
+	margin: 10px;
+	&:before,
+	&::after {
+		flex-grow: 1;
+		content: "";
+		display: block;
+		height: 1px;
+		border-radius: 1px;
+		background-color: var(--off-white-3);
+	}
+}
+
+.description {
+	@include TextBase;
+}

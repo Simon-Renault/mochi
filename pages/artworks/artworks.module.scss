@@ -3,31 +3,32 @@
 	grid-template-columns: 3fr 400px;
 	gap: 50px;
 
-	.details {
-		border: 1px solid var(--off-white-2);
-		height: 300px;
-		margin-bottom: 30px;
-		position: sticky;
+	.sidebar {
 		top: 120px;
-		border-radius: 12px;
+		position: sticky;
 	}
+}
+
+.banner {
+	background-color: var(--off-white-2);
+	margin-top: 30px;
+	overflow: hidden;
+	border-radius: 12px;
 }
 
 .image_container {
 	position: relative;
 	overflow: hidden;
-	margin-top: 30px;
 	background-color: var(--off-white-2);
 	border-radius: 12px;
-	height: 500px;
+	height: 550px;
 	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	img {
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		position: absolute;
 		mix-blend-mode: darken;
+		//width: 100%;
 		object-fit: cover;
 		transition: ease-in 0.3s;
 	}
@@ -57,10 +58,7 @@
 		display: flex;
 		align-items: baseline;
 		.title {
-			font-family: var(--font-family-serif);
-			font-weight: 600;
-			font-size: 70px;
-			line-height: 62px;
+			@include H1;
 		}
 		.date {
 			font-weight: 200;

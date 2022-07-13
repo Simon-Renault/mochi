@@ -1,0 +1,79 @@
+.gallery {
+	//--Grid veriables
+	--gap: 70px;
+	--half-gap: calc(var(--gap) / 2); // 1 gap for 2 items
+	--third-gap: calc(var(--gap) * 2 / 3); // 2 gaps for 3 items
+	//--end
+	margin-top: 100px;
+	margin-bottom: 100px;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gap);
+	align-items: center;
+	justify-content: center;
+
+	@media (min-width: 480px) {
+		gap: 100px var(--gap);
+	}
+
+	.gallery_card {
+		//Tablet 3 column asymetric grid
+		@media (min-width: 480px) and (max-width: 1150px) {
+			&:nth-child(2n + 1) {
+				width: calc(60% - var(--half-gap));
+				transform: translate(0, 35px);
+				//border: 1px solid blue;
+			}
+
+			&:nth-child(2n + 0) {
+				width: calc(60% - var(--half-gap));
+				transform: translate(0, -35px);
+				//border: 1px solid red;
+			}
+			&:nth-child(4n + 0) {
+				width: calc(40% - var(--half-gap));
+				//border: 1px solid green;
+			}
+			&:nth-child(4n - 3) {
+				width: calc(40% - var(--half-gap));
+				//border: 1px solid orange;
+			}
+		}
+
+		//Desktop 3 column asymetric grid
+		@media (min-width: 1150px) {
+			&:nth-child(5n + 1) {
+				width: calc(25% - var(--third-gap));
+				transform: translate(0, 65px);
+				//border: 1px solid blue;
+			}
+
+			&:nth-child(5n + 3) {
+				width: calc(25% - var(--third-gap));
+				transform: translate(0, -65px);
+				//border: 1px solid blue;
+			}
+
+			&:nth-child(5n + 2) {
+				width: calc(50% - var(--third-gap));
+				//border: 1px solid green;
+			}
+
+			&:nth-child(5n + 4) {
+				width: calc(30% - var(--third-gap));
+				min-width: 35%;
+				margin-left: 90px;
+				transform: translate(0, 40px);
+				//border: 1px solid orange;
+			}
+			&:nth-child(5n + 5) {
+				width: calc(30% - var(--third-gap));
+				min-width: 35%;
+				margin-right: 90px;
+				transform: translate(0, -40px);
+				//border: 1px solid orange;
+			}
+		}
+	}
+}

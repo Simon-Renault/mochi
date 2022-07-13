@@ -1,0 +1,114 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+	font-family: var(--font-family-serif);
+
+	@media (min-width: 480px) {
+		display: none;
+	}
+
+	.logo_container {
+		overflow-y: hidden;
+
+		h1 {
+			text-transform: uppercase;
+			font-size: 15px;
+		}
+	}
+
+	.menu_container {
+		overflow-y: hidden;
+		padding: 10px;
+		border-radius: 6px;
+		color: var(--black);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:hover {
+			background-color: var(--off-white-1);
+			cursor: pointer;
+		}
+
+		div {
+			text-transform: uppercase;
+			font-size: 13px;
+		}
+	}
+}
+
+.mobile_menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--off-white-1);
+
+	button {
+		align-self: flex-end;
+		margin: 35px 45px 0 0;
+		outline: none;
+		border: none;
+		background-color: transparent;
+		text-transform: uppercase;
+		font-family: inherit;
+		font-size: 13px;
+		color: var(--black);
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin-top: 40px;
+
+		li {
+			margin: 20px 0;
+			overflow-y: hidden;
+			user-select: none;
+
+			div {
+				text-align: center;
+				text-transform: capitalize;
+				font-size: 34px;
+			}
+
+			&:hover {
+				font-style: italic;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.contact {
+		margin-top: 80px;
+		display: flex;
+		font-family: var(--font-family);
+
+		h5 {
+			font-weight: normal;
+
+			&:first-of-type {
+				margin-right: 40px;
+			}
+		}
+	}
+}
+
+.img_container {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	width: 100%;
+
+	img {
+		height: 700px;
+		pointer-events: none;
+	}
+}

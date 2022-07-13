@@ -1,0 +1,79 @@
+//Text
+
+@mixin serif {
+	font-family: var(--font-family-serif);
+	font-style: normal;
+	font-weight: 200;
+	line-height: 1.5em;
+	color: var(--black);
+}
+
+$grid-size: 10px;
+$half-grid-size: 5px;
+
+$gapDefault: 5 * $grid-size;
+
+$font-scale: 1.6;
+$font-base-size: 1.6;
+
+@mixin H1 {
+	@include serif;
+	font-weight: 200;
+	font-size: 40px;
+	line-height: 1.3em;
+	word-spacing: 0.1em;
+	letter-spacing: -3px;
+	@media (min-width: 480px) {
+		font-size: 60px;
+	}
+}
+
+@mixin H2 {
+	@include serif;
+	font-size: 30px;
+	letter-spacing: -2px;
+	margin-bottom: 0.2em;
+	@media (min-width: 480px) {
+		font-size: 48px;
+	}
+}
+
+@mixin H3 {
+	@include serif;
+	font-size: 30px;
+	line-height: 1.4em;
+	letter-spacing: -1px;
+	margin-bottom: 0.5em;
+}
+
+@mixin H4 {
+	@include serif;
+	font-size: 24px;
+	line-height: 1.3em;
+	margin-bottom: 0.5em;
+}
+
+@mixin TextBase {
+	font-family: var(--font-family);
+	color: var(--grey-1);
+	font-weight: 200;
+	font-size: 18px;
+	line-height: 1.6em;
+	margin-bottom: 1.4em;
+}
+
+@mixin TextReadable {
+	font-family: var(--font-family);
+	color: var(--grey-1);
+	font-weight: 200;
+	font-size: 20px;
+	line-height: 1.6em;
+	margin-bottom: 1.4em;
+}
+
+@mixin subtitle {
+	font-family: var(--font-family);
+	color: var(--grey-1);
+	font-size: 16px;
+	font-weight: 300;
+}

@@ -9,7 +9,7 @@ interface IArticleCardProps {
 }
 
 const ArticleCard = (props: IArticleCardProps): JSX.Element => {
-	const { cover, path } = props.post;
+	const { cover, path, title } = props.post;
 	return (
 		<Link href={path}>
 			<a>
@@ -26,9 +26,7 @@ const ArticleCard = (props: IArticleCardProps): JSX.Element => {
 					</div>
 					<div className={css.description}>
 						<p className={css.date}>Oct 24, 2021</p>
-						<p className={css.title}>
-							Lorem ipsum dolor sit amet, consectetur.
-						</p>
+						<p className={css.title}>{title}</p>
 					</div>
 				</div>
 			</a>

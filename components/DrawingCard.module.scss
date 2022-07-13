@@ -2,37 +2,8 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 200px;
-	width: 21%;
 	position: relative;
 	transition: all 0.3s ease;
-
-	&:nth-child(5n + 1) {
-		//border: 1px solid blue;
-		transform: translate(0, 65px);
-	}
-
-	&:nth-child(5n + 3) {
-		//border: 1px solid blue;
-		transform: translate(0, -65px);
-	}
-
-	&:nth-child(5n + 2) {
-		//border: 1px solid green;
-		min-width: 43%;
-	}
-
-	&:nth-child(5n + 4) {
-		//border: 1px solid orange;
-		min-width: 35%;
-		margin-left: 90px;
-		transform: translate(0, 40px);
-	}
-	&:nth-child(5n + 5) {
-		//border: 1px solid orange;
-		min-width: 35%;
-		margin-right: 90px;
-		transform: translate(0, -40px);
-	}
 
 	&:hover {
 		.imageContainer {
@@ -68,19 +39,14 @@
 		padding-top: 15px;
 
 		.price {
-			font-family: var(--font-family);
-			color: var(--grey-1);
-			font-size: 14px;
-			font-weight: 300;
+			@include subtitle;
 			width: 30%;
 		}
 		.title {
-			font-family: var(--font-family-serif);
-			font-size: 22px;
-			line-height: 1.5em;
-			font-weight: 400;
+			@include H4;
 			width: 80%;
 			padding-bottom: 10px;
+			margin-bottom: 0;
 		}
 	}
 }

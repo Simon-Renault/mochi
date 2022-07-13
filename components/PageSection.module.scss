@@ -1,8 +1,14 @@
 .page_section {
 	width: 100vw;
-	padding: 100px 15%;
 	background-color: var(--white);
+	display: flex;
+	justify-content: center;
+	padding: 100px 0;
 	&.elevated {
 		background-color: var(--off-white-1);
+	}
+	.inner {
+		width: var(--standard-container-width);
+		max-width: var(--standard-container-max-width);
 	}
 }

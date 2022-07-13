@@ -6,13 +6,14 @@ import { IDrawing } from "@lib/types";
 
 interface IDrawingCardProps {
 	drawing: IDrawing;
+	className?: string;
 }
 
 const DrawingCard = (props: IDrawingCardProps): JSX.Element => {
 	const { title, path, cover } = props.drawing;
 	return (
 		<Link href={path}>
-			<a className={css.drawingCard}>
+			<a className={[css.drawingCard, props.className].join(" ")}>
 				<div className={css.imageContainer}>
 					<Image
 						className={css.image}

@@ -17,5 +17,9 @@ export default function PageSection({
 		className,
 	].join(" ");
 
-	return <div className={classNames}>{children}</div>;
+	return (
+		<div className={classNames}>
+			<div className={css.inner}>{children}</div>
+		</div>
+	);
 }

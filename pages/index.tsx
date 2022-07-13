@@ -2,6 +2,7 @@ import PageSection from "@components/PageSection";
 import ArticleCard from "@components/ArticleCard";
 import DrawingCard from "@components/DrawingCard";
 import TitleSection from "@components/TitleSection";
+import Gallery from "@components/Gallery";
 import Button from "@components/Button";
 import { getDatabase } from "../lib/notion";
 import css from "./index.module.scss";
@@ -48,27 +49,29 @@ export default function Home({ posts, drawings }: IHomeProps) {
 						sed do eiusmod tempor incididunt ut labore et dolore
 						magna aliqua"
 				/>
-				<div className={css.gallery}>
-					{drawings.map((drawing) => {
-						return (
-							<DrawingCard drawing={drawing} key={drawing.id} />
-						);
-					})}
-				</div>
+				<Gallery drawings={drawings} />
 			</PageSection>
 			<PageSection elevated={true}>
 				<TitleSection title="About me" />
 				<div className={css.about}>
-					<div className={css.about_text}>
-						Digital is a customizable Super template designed to
-						help digital creators feature projects, writing, and
-						more. Make Digital your own by changing background,
-						text, and accent colors with ease. Digital is built by
-						Matt Downey — a digital creator himself who is heavily
-						involved in design, technology, crypto, and mindset. The
-						images for all projects and articles were kindly
-						licensed by Christos.
-						<Button>
+					<div>
+						<div className={css.about_text}>
+							<p>
+								Digital is a customizable Super template
+								designed to help digital creators feature
+								projects, writing, and more. Make Digital your
+								own by changing background, text, and accent
+								colors with ease.
+							</p>
+							<p>
+								Digital is built by Matt Downey — a digital
+								creator himself who is heavily involved in
+								design, technology, crypto, and mindset. The
+								images for all projects and articles were kindly
+								licensed by Christos.
+							</p>
+						</div>
+						<Button variant="outlined">
 							Read more <ArrowRight size={16} />
 						</Button>
 					</div>
@@ -121,14 +124,14 @@ export const getStaticProps = async () => {
 	};
 
 	const formatPosts = async (post: any): Promise<IPost> => {
-		const { Image } = post.properties;
+		const { Image, Name } = post.properties;
 		const cover = await extractImage(Image.files[0].file.url);
 
 		return {
 			cover,
 			id: post.id,
 			path: `/blog-posts/${post.id}`,
-			title: "",
+			title: Name.title[0].plain_text,
 		};
 	};
 
