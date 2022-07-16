@@ -6,9 +6,9 @@ import RenderPage, { Text } from "../../lib/notionPage";
 import PageSection from "@components/PageSection";
 
 export default function Post({ page, blocks }) {
-    // if (!page || !blocks) {
-    //     return <div />;
-    // }
+    if (!page || !blocks) {
+        return <div />;
+    }
 
     const title = page.properties.Name.title[0].plain_text;
 
