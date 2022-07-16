@@ -8,11 +8,35 @@
 }
 
 .section {
+	position: sticky;
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
-	position: sticky;
 	top: calc(var(--header-height) + 50px);
+	border-radius: 12px;
+	border: 1px solid var(--off-white-3);
+}
+
+.card {
+	border-radius: 0;
+	border: none;
+	&:first-child {
+		border-bottom: 1px solid var(--off-white-3);
+	}
+}
+
+@media (min-width: 480px) and (max-width: 1150px) {
+	.section {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	.card {
+		border-radius: 0;
+		border: none;
+		&:first-child {
+			border-bottom: none;
+			border-right: 1px solid var(--off-white-3);
+		}
+	}
 }
 
 .divider {

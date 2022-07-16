@@ -10,7 +10,7 @@ import css from "./Button.module.scss";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	href?: string;
 	className?: string;
-	onClick?: () => {};
+	onClick?: () => void;
 	fill?: boolean;
 	disabled?: boolean;
 	outlined?: boolean;
@@ -20,7 +20,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	Component?: string | JSXElementConstructor<any>;
 }
 
-const Button: React.FC<ButtonProps> = forwardRef((props) => {
+const Button: React.FC<ButtonProps> = (props) => {
 	const {
 		href,
 		className,
@@ -57,11 +57,12 @@ const Button: React.FC<ButtonProps> = forwardRef((props) => {
 			aria-pressed={active}
 			className={rootClassName}
 			disabled={disabled}
+			onClick={onClick}
 			{...rest}
 		>
 			{children}
 		</Component>
 	);
-});
+};
 
 export default Button;

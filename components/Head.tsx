@@ -32,19 +32,6 @@ const Head: FC = () => {
 			<DefaultSeo {...config} />
 			<NextHead>
 				<link rel="icon" type="image/png" href="/favicon.png" />
-				<meta
-					name="viewport"
-					content="width=device-width, initial-scale=1"
-				/>
-				<link
-					rel="manifest"
-					href="/site.webmanifest"
-					key="site-manifest"
-				/>
-				<link
-					rel="stylesheet"
-					href="https://use.typekit.net/dqp0osx.css"
-				/>
 			</NextHead>
 		</>
 	);
