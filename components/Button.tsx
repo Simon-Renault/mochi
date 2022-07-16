@@ -10,53 +10,56 @@ import css from "./Button.module.scss";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	href?: string;
 	className?: string;
-	variant?: "flat" | "outlined";
-	active?: boolean;
-	type?: "submit" | "reset" | "button";
-	Component?: string | JSXElementConstructor<any>;
-	width?: string | number;
-	loading?: boolean;
+	onClick?: () => {};
+	fill?: boolean;
 	disabled?: boolean;
+	outlined?: boolean;
+	rounded?: boolean;
+	active?: boolean;
+	intent?: "primary" | "Secondary";
+	Component?: string | JSXElementConstructor<any>;
 }
 
 const Button: React.FC<ButtonProps> = forwardRef((props) => {
 	const {
+		href,
 		className,
-		variant = "flat",
+		onClick,
 		children,
 		active,
-		width,
-		loading = false,
-		disabled = false,
-		style = {},
-		Component = "button",
+		outlined,
+		fill,
+		disabled,
+		rounded,
+		intent = "primary",
+		Component = href?.length ? "a" : "button",
 		...rest
 	} = props;
+
+	const intentClassName = intent == "primary" ? css.primary : css.secondary;
 
 	const rootClassName = cn(
 		css.root,
 		{
-			[css.outlined]: variant === "outlined",
-			[css.loading]: loading,
+			[css.outlined]: outlined,
+			[css.disabled]: disabled,
+			[css.rounded]: rounded,
+			[css.fill]: fill,
 			[css.disabled]: disabled,
 		},
+		intentClassName,
 		className
 	);
 
 	return (
 		<Component
+			href={href}
 			aria-pressed={active}
-			data-variant={variant}
 			className={rootClassName}
 			disabled={disabled}
-			style={{
-				width,
-				...style,
-			}}
 			{...rest}
 		>
 			{children}
-			{loading && <i>loading</i>}
 		</Component>
 	);
 });

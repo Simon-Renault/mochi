@@ -27,14 +27,27 @@ const Divider = (props: IDividerProps) => {
 export default function BuySection() {
 	return (
 		<div className={css.section}>
-			<Card title="details"></Card>
 			<Card title="Buy">
 				<p className={css.description}>
 					All items comes with handmade packaging and a few extras.
 				</p>
-				<Button> Buy a Print — from 50€</Button>
+				<Button fill> Buy a Print — from 50€</Button>
 				<Divider text="or" />
-				<Button> Buy the Original — 1,200€</Button>
+				<Button fill outlined>
+					Buy the Original — 1,200€
+				</Button>
+			</Card>
+			<Card title="Details">
+				<div className={css.details}>
+					<div className={css.detail}>
+						<div className={css.key}>Technique</div>
+						<div className={css.value}>Rotring fineliner</div>
+					</div>
+					<div className={css.detail}>
+						<div className={css.key}>Support</div>
+						<div className={css.value}>350g bristol paper</div>
+					</div>
+				</div>
 			</Card>
 		</div>
 	);

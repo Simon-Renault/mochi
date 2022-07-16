@@ -1,16 +1,16 @@
 import PageSection from "@components/PageSection";
 import ArticleCard from "@components/ArticleCard";
-import DrawingCard from "@components/DrawingCard";
 import TitleSection from "@components/TitleSection";
 import Gallery from "@components/Gallery";
 import Button from "@components/Button";
-import { getDatabase } from "../lib/notion";
 import css from "./index.module.scss";
-import Image from "next/image";
-import cover from "@images/cover.jpg";
+import { getDatabase } from "../lib/notion";
 import { getPlaiceholder } from "plaiceholder";
 import { IPost, IDrawing, IImage } from "@lib/types";
 import { ArrowRight } from "react-feather";
+import HomeGreetings from "@components/sections/HomeGreetings";
+import AboutMe from "@components/sections/AboutMe";
+import Articles from "@components/sections/Articles";
 
 export const drawingDatabaseId = process.env.NOTION_DRAWING_DATABASE_ID;
 export const blogPostsDatabaseId = process.env.NOTION_BLOG_DATABASE_ID;
@@ -23,25 +23,7 @@ interface IHomeProps {
 export default function Home({ posts, drawings }: IHomeProps) {
 	return (
 		<main className={css.container}>
-			<PageSection className={css.section_top}>
-				<div className={css.greetings}>
-					<p className={css.welcome}>Welcome</p>
-					<p className={css.heading}>
-						Hey, I’m Simon — Artist & creator who enjoys mixing
-						nature and cities, with a touch of chaos.
-					</p>
-					<div className={css.image_container}>
-						<Image
-							src={cover}
-							alt="Picture of the author"
-							layout="fill"
-							placeholder="blur"
-							quality={20}
-						/>
-					</div>
-					<div className={css.divider}></div>
-				</div>
-			</PageSection>
+			<HomeGreetings />
 			<PageSection className={css.section_artworks}>
 				<TitleSection
 					title="Artworks"
@@ -52,37 +34,7 @@ export default function Home({ posts, drawings }: IHomeProps) {
 				<Gallery drawings={drawings} />
 			</PageSection>
 			<PageSection elevated={true}>
-				<TitleSection title="About me" />
-				<div className={css.about}>
-					<div>
-						<div className={css.about_text}>
-							<p>
-								Digital is a customizable Super template
-								designed to help digital creators feature
-								projects, writing, and more. Make Digital your
-								own by changing background, text, and accent
-								colors with ease.
-							</p>
-							<p>
-								Digital is built by Matt Downey — a digital
-								creator himself who is heavily involved in
-								design, technology, crypto, and mindset. The
-								images for all projects and articles were kindly
-								licensed by Christos.
-							</p>
-						</div>
-						<Button variant="outlined">
-							Read more <ArrowRight size={16} />
-						</Button>
-					</div>
-					<div className={css.about_image}>
-						<img
-							src="/images/about.png"
-							width="100%"
-							height="100%"
-						/>
-					</div>
-				</div>
+				<AboutMe />
 			</PageSection>
 			<PageSection>
 				<div className={css.columns}>
@@ -90,9 +42,9 @@ export default function Home({ posts, drawings }: IHomeProps) {
 						<TitleSection
 							title="Articles"
 							description="Sometimes I let my mind wander and decide to write
-					about various topics."
+	about various topics."
 						/>
-						<Button>
+						<Button rounded>
 							Explore all <ArrowRight size={16} />
 						</Button>
 					</div>

@@ -1,29 +1,55 @@
 .root {
-	@include TextBase;
+	&.primary {
+		--text-color: var(--white);
+		--bg-color: var(--black);
+	}
+	&.secondary {
+		--text-color: var(--black);
+		--bg-color: var(--off-white-3);
+	}
+
+	font-family: var(--font-family);
+	font-size: 18px;
 	$height: 45px;
-	display: flex;
+	display: inline-flex;
 	height: $height;
 	padding: 0 $height/2 - 5px;
-	//border-radius: $height/2;
 	border-radius: 6px;
 	border: none;
 	align-items: center;
-	background-color: var(--off-white-2);
+	justify-content: center;
+	background-color: var(--bg-color);
 	transition: background-color 0.2s ease;
 	cursor: pointer;
-	color: var(--grey-2);
+	color: var(--text-color);
+	font-weight: 200;
+	flex-grow: 0;
 
 	&:hover {
-		background-color: var(--off-white-3);
+		background-color: var(--bg-color);
 	}
 
 	&.outlined {
 		background: transparent;
-		border: 2px solid var(--off-white-3);
+		border: 2px solid var(--bg-color);
+		color: var(--black);
 
 		&:hover {
-			background-color: var(--off-white-2);
+			background-color: var(--off-white-3);
 		}
+	}
+
+	&.rounded {
+		border-radius: $height / 2;
+	}
+
+	&.disabled {
+		opacity: 50%;
+		cursor: pointer;
+	}
+
+	&.fill {
+		width: 100%;
 	}
 
 	svg:last-child {

@@ -13,7 +13,7 @@
 
 	.imageContainer {
 		position: relative;
-		background: var(--off-white-2);
+		background: var(--off-white-1);
 		background-size: cover;
 		border-radius: 10px;
 		overflow: hidden;
@@ -24,6 +24,7 @@
 
 		img {
 			transition: ease-in 0.3s;
+			transform: scale(1.2);
 		}
 
 		> span {

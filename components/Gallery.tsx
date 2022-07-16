@@ -1,4 +1,5 @@
 import { IDrawing } from "@lib/types";
+import Button from "./Button";
 import DrawingCard from "./DrawingCard";
 import css from "./Gallery.module.scss";
 
@@ -18,6 +19,7 @@ export default function Gallery({ drawings }: IGalleryProps) {
 					/>
 				);
 			})}
+			<Button className={css.view_all}>View all</Button>
 		</div>
 	);
 }

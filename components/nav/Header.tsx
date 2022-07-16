@@ -2,7 +2,7 @@ import Link from "next/link";
 import css from "./Header.module.scss";
 import { ShoppingBag } from "react-feather";
 import MobileNav from "@components/nav/MobileNav";
-import { NAV_ITEMS } from "./config";
+import { NAV_ITEMS } from "@lib/config";
 import { motion } from "framer-motion";
 
 export default function Header() {

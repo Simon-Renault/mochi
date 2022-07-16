@@ -1,11 +1,10 @@
 .gallery {
-	//--Grid veriables
-	--gap: 70px;
+	//--Grid variables
+	--gap: 50px;
 	--half-gap: calc(var(--gap) / 2); // 1 gap for 2 items
 	--third-gap: calc(var(--gap) * 2 / 3); // 2 gaps for 3 items
 	//--end
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin: 50px 0;
 	position: relative;
 	display: flex;
 	flex-wrap: wrap;
@@ -14,10 +13,27 @@
 	justify-content: center;
 
 	@media (min-width: 480px) {
+		--gap: 150px;
 		gap: 100px var(--gap);
+		margin: 100px 0;
+	}
+
+	.view_all {
+		width: 100%;
+	}
+
+	@media (min-width: 480px) {
+		.view_all {
+			display: none;
+		}
 	}
 
 	.gallery_card {
+		@media (max-width: 480px) {
+			&:nth-child(1n + 6) {
+				display: none;
+			}
+		}
 		//Tablet 3 column asymetric grid
 		@media (min-width: 480px) and (max-width: 1150px) {
 			&:nth-child(2n + 1) {

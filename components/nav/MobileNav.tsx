@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import css from "./MobileNav.module.scss";
 import { Menu, X } from "react-feather";
-import { NAV_ITEMS } from "./config";
+import { NAV_ITEMS } from "@lib/config";
+import Link from "next/link";
 
 const MobileNav = () => {
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -10,7 +11,6 @@ const MobileNav = () => {
 	const hideNavItemsVariant = {
 		opened: {
 			opacity: 0,
-			y: "-100%",
 			transition: {
 				duration: 0.5,
 				ease: "easeInOut",
@@ -18,7 +18,6 @@ const MobileNav = () => {
 		},
 		closed: {
 			opacity: 1,
-			y: "0%",
 			transition: {
 				delay: 1.1,
 				duration: 0.5,
@@ -96,13 +95,14 @@ const MobileNav = () => {
 			initial="closed"
 			animate={mobileNavOpen ? "opened" : "closed"}
 		>
-			<motion.div
-				variants={hideNavItemsVariant}
+			<div
 				className={css.menu_container}
 				onClick={() => setMobileNavOpen(true)}
 			>
-				<Menu size={20} />
-			</motion.div>
+				<motion.div variants={hideNavItemsVariant}>
+					<Menu size={20} />
+				</motion.div>
+			</div>
 
 			<motion.div
 				variants={mobileMenuVariant}
@@ -118,7 +118,9 @@ const MobileNav = () => {
 					{NAV_ITEMS.map((navItem) => (
 						<motion.li whileTap={{ scale: 0.95 }} key={navItem.id}>
 							<motion.div variants={liVariant}>
-								{navItem.navTitle}
+								<Link href={navItem.url}>
+									<a>{navItem.navTitle}</a>
+								</Link>
 							</motion.div>
 						</motion.li>
 					))}

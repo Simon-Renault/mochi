@@ -2,6 +2,8 @@
 	display: flex;
 	justify-content: space-between;
 	font-family: var(--font-family-serif);
+	align-items: center;
+	justify-content: center;
 
 	@media (min-width: 480px) {
 		display: none;
@@ -18,12 +20,13 @@
 
 	.menu_container {
 		overflow-y: hidden;
-		padding: 10px;
 		border-radius: 6px;
 		color: var(--black);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		height: 45px;
+		width: 45px;
 
 		&:hover {
 			background-color: var(--off-white-1);

@@ -3,9 +3,12 @@
 @mixin serif {
 	font-family: var(--font-family-serif);
 	font-style: normal;
-	font-weight: 200;
+	font-weight: 400;
 	line-height: 1.5em;
 	color: var(--black);
+	@media (max-width: 480px) {
+		font-weight: 600;
+	}
 }
 
 $grid-size: 10px;
@@ -53,9 +56,16 @@ $font-base-size: 1.6;
 	margin-bottom: 0.5em;
 }
 
+@mixin H5 {
+	@include serif;
+	font-size: 20px;
+	line-height: 1.3em;
+	margin-bottom: 0.5em;
+}
+
 @mixin TextBase {
 	font-family: var(--font-family);
-	color: var(--grey-1);
+	color: var(--grey-2);
 	font-weight: 200;
 	font-size: 18px;
 	line-height: 1.6em;
@@ -64,10 +74,10 @@ $font-base-size: 1.6;
 
 @mixin TextReadable {
 	font-family: var(--font-family);
-	color: var(--grey-1);
+	color: var(--grey-2);
 	font-weight: 200;
 	font-size: 20px;
-	line-height: 1.6em;
+	line-height: 1.8em;
 	margin-bottom: 1.4em;
 }
 

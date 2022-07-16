@@ -1,0 +1,38 @@
+.about {
+	&_text {
+		@include TextBase;
+		line-height: 1.8em;
+		margin: 0;
+		p:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+	&_container {
+		display: flex;
+		margin-bottom: 24px;
+		flex-flow: column-reverse;
+		@media (min-width: 1150px) {
+			display: grid;
+			grid-template-columns: auto 45%;
+			gap: $gapDefault;
+		}
+	}
+	.about_image {
+		position: relative;
+		border-radius: 12px;
+		overflow: hidden;
+
+		@media (max-width: 1150px) {
+			height: 200px;
+			margin: 20px 0;
+		}
+		img {
+			position: absolute;
+			object-fit: cover;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	}
+}
