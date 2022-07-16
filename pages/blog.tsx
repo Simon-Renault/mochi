@@ -53,7 +53,7 @@ export const getStaticProps = async () => {
 		return {
 			cover,
 			id: post.id,
-			path: `/blog-posts/${post.id}`,
+			path: `/article/${post.id}`,
 			title: Name.title[0].plain_text,
 		};
 	};

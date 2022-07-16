@@ -1,32 +1,53 @@
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import { drawingDatabaseId } from "../index";
-import styles from "./post.module.scss";
-import RenderPage, { Text } from "../../lib/notionPage";
+import RenderPage from "@lib/notionPage";
 import PageSection from "@components/PageSection";
+import BuySection from "@components/shop/BuySection";
+import css from "./artworks.module.scss";
 
 export default function Post({ page, blocks }) {
     if (!page || !blocks) {
         return <div />;
     }
 
+    const title = page.properties.Name.title[0].plain_text;
+
     return (
-        <div>
+        <>
             <Head>
-                <title>{page.properties.Name.title[0].plain_text}</title>
+                <title>{title}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <main>
+                <PageSection className={css.top}>
+                    <div className={css.artwork_title}>
+                        <p className={css.id}>01 - 10</p>
+                        <div className={css.artwork_title_inner}>
+                            <h1 className={css.title}>{title}</h1>
+                            <p className={css.date}>2020</p>
+                        </div>
+                    </div>
+                    <div className={css.banner}>
+                        <div className={css.image_container}>
+                            <img
+                                src={page.properties.Image.files[0].file.url}
+                            />
+                        </div>
+                    </div>
+                </PageSection>
 
-            <img src={page.properties.Image.files[0].file.url} />
+                <PageSection className={css.content}>
+                    <div className={css.artwork_page}>
+                        {RenderPage(blocks)}
 
-            <PageSection>{RenderPage(blocks)}</PageSection>
-
-            <article className={styles.container}>
-                <h1 className={styles.name}>
-                    <Text text={page.properties.Name.title} />
-                </h1>
-            </article>
-        </div>
+                        <div className={css.sidebar}>
+                            <BuySection />
+                        </div>
+                    </div>
+                </PageSection>
+            </main>
+        </>
     );
 }
 

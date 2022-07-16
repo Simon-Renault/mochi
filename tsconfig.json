@@ -27,8 +27,8 @@
         "**/*.tsx",
         "components/header.jsx",
         "components/PageSection.jsx",
-        "pages/artworks/[id].jsx",
-        "pages/blog/[id].jsx"
+        "pages/artwork/[id].jsx",
+        "pages/article/[id].jsx"
     ],
     "exclude": ["node_modules"]
 }

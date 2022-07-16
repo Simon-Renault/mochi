@@ -2,13 +2,14 @@ import Button from "@components/Button";
 import css from "./BuySection.module.scss";
 
 interface IcardProps {
+	className?: string;
 	title?: string;
 	children?: JSX.Element | JSX.Element[] | string;
 }
 const Card = (props: IcardProps) => {
-	const { title, children } = props;
+	const { title, children, className } = props;
 	return (
-		<div className={css.card}>
+		<div className={[css.card, className].join(" ")}>
 			<h4 className={css.card_title}>{title}</h4>
 			{children}
 		</div>
@@ -37,14 +38,14 @@ export default function BuySection() {
 					Buy the Original — 1,200€
 				</Button>
 			</Card>
-			<Card title="Details">
-				<div className={css.details}>
+			<Card title="Details" className={css.details}>
+				<div className={css.details_wrapper}>
 					<div className={css.detail}>
-						<div className={css.key}>Technique</div>
+						<div>Technique</div>
 						<div className={css.value}>Rotring fineliner</div>
 					</div>
 					<div className={css.detail}>
-						<div className={css.key}>Support</div>
+						<div>Support</div>
 						<div className={css.value}>350g bristol paper</div>
 					</div>
 				</div>

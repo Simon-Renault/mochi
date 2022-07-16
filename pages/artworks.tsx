@@ -50,7 +50,7 @@ export const getStaticProps = async () => {
 		return {
 			cover,
 			id: drawing.id,
-			path: `/artworks/${drawing.id}`,
+			path: `/artwork/${drawing.id}`,
 			title: Name.title[0].plain_text,
 		};
 	};
