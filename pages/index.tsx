@@ -26,10 +26,8 @@ export default function Home({ posts, drawings }: IHomeProps) {
 			<HomeGreetings />
 			<PageSection className={css.section_artworks}>
 				<TitleSection
-					title="Artworks"
-					description="	Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua"
+					title="Featured work"
+					description="A collection of my best work, carefuly curated and kept up to date by myself"
 				/>
 				<Gallery drawings={drawings} />
 			</PageSection>
@@ -61,8 +59,15 @@ export default function Home({ posts, drawings }: IHomeProps) {
 }
 
 export const getStaticProps = async () => {
-	const drawingDatabase = await getDatabase(drawingDatabaseId);
-	const blogPostsDatabase = await getDatabase(blogPostsDatabaseId);
+	const maxPost = 3;
+	const maxDrawing = 8;
+
+	const drawingDatabase = await (
+		await getDatabase(drawingDatabaseId)
+	).slice(0, maxDrawing);
+	const blogPostsDatabase = await (
+		await getDatabase(blogPostsDatabaseId)
+	).slice(0, maxPost);
 
 	const extractImage = async (url: string): Promise<IImage> => {
 		const { base64, img } = await getPlaiceholder(url, {
@@ -87,14 +92,14 @@ export const getStaticProps = async () => {
 		};
 	};
 
-	const formatDrawing = async (post: any): Promise<IPost> => {
-		const { Image, Name } = post.properties;
+	const formatDrawing = async (drawing: any): Promise<IDrawing> => {
+		const { Image, Name } = drawing.properties;
 		const cover = await extractImage(Image.files[0].file.url);
 
 		return {
 			cover,
-			id: post.id,
-			path: `/artworks/${post.id}`,
+			id: drawing.id,
+			path: `/artworks/${drawing.id}`,
 			title: Name.title[0].plain_text,
 		};
 	};
