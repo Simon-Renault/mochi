@@ -10,7 +10,6 @@ import { IPost, IDrawing, IImage } from "@lib/types";
 import { ArrowRight } from "react-feather";
 import HomeGreetings from "@components/sections/HomeGreetings";
 import AboutMe from "@components/sections/AboutMe";
-import Articles from "@components/sections/Articles";
 
 export const drawingDatabaseId = process.env.NOTION_DRAWING_DATABASE_ID;
 export const blogPostsDatabaseId = process.env.NOTION_BLOG_DATABASE_ID;
