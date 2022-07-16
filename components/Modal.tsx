@@ -21,9 +21,27 @@ interface ISelectableCardProps {
 }
 
 const VARIANTS = [
-	{ title: "Medium", price: "50€", dimensions: "21 x 29.7cm" },
-	{ title: "Small", price: "100€", dimensions: "21 x 29.7cm" },
-	{ title: "Large", price: "200€", dimensions: "21 x 29.7cm" },
+	{
+		title: "Medium",
+		price: "50€",
+		dimensions: "21 x 29.7cm",
+		message:
+			"Perfect as a present or to display in a small space. Fine details can only be discovered up close.",
+	},
+	{
+		title: "Small",
+		price: "100€",
+		dimensions: "29.7 x 42cm",
+		message:
+			"The artwork as it was intended to be seen. Perfect for all room size",
+	},
+	{
+		title: "Large",
+		price: "200€",
+		dimensions: "42 x 59.4cm",
+		message:
+			"Larger print to appreciate the details from afar. Suits best medium to large rooms.",
+	},
 ];
 
 const SelectableCard = (props: ISelectableCardProps) => {
@@ -100,10 +118,7 @@ const Modal = (props: IModalProps) => {
 								);
 							})}
 						</div>
-						<p>
-							Larger print to appreciate the details from afar.
-							Suits best medium to large rooms.
-						</p>
+						<p>{VARIANTS[selectedCard].message}</p>
 					</main>
 					<footer className={css.footer}>
 						<Button fill>Add to cart — 50€</Button>
