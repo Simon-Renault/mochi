@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../lib/notion";
-import { drawingDatabaseId } from "../index";
+import { drawingDatabaseId } from "@lib/config";
 import RenderPage from "@lib/notionPage";
 import PageSection from "@components/PageSection";
 import BuySection from "@components/shop/BuySection";

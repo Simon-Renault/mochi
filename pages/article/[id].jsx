@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../lib/notion";
-import { blogPostsDatabaseId } from "../index";
 import css from "./post.module.scss";
-import RenderPage, { Text } from "../../lib/notionPage";
+import RenderPage from "../../lib/notionPage";
 import PageSection from "@components/PageSection";
+import { blogPostsDatabaseId } from "@lib/config";
 
 export default function Post({ page, blocks }) {
     if (!page || !blocks) {
