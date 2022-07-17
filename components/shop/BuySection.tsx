@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import css from "./BuySection.module.scss";
 
+import BuyPrintModal from "@components/shop/BuyPrintModal";
 import Modal from "@components/Modal";
 
 interface IcardProps {
@@ -20,6 +21,7 @@ const Card = (props: IcardProps) => {
 	);
 };
 
+//Extract to component
 interface IDividerProps {
 	text: string;
 }
@@ -28,6 +30,7 @@ const Divider = (props: IDividerProps) => {
 	const { text } = props;
 	return <div className={css.divider}>{text}</div>;
 };
+//
 
 export default function BuySection() {
 	const [showModal, setShowModal] = useState(false);
@@ -67,8 +70,8 @@ export default function BuySection() {
 					</div>
 				</Card>
 			</div>
-			<Modal onClose={() => setShowModal(false)} show={showModal}>
-				Hello from the modal!
+			<Modal show={showModal}>
+				<BuyPrintModal onClose={() => setShowModal(false)} />
 			</Modal>
 		</>
 	);

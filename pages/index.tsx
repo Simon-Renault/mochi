@@ -3,16 +3,14 @@ import ArticleCard from "@components/ArticleCard";
 import TitleSection from "@components/TitleSection";
 import Gallery from "@components/Gallery";
 import Button from "@components/Button";
-import css from "./index.module.scss";
-import { getDatabase } from "../lib/notion";
-import { getPlaiceholder } from "plaiceholder";
-import { IPost, IDrawing, IImage } from "@lib/types";
-import { ArrowRight } from "react-feather";
 import HomeGreetings from "@components/sections/HomeGreetings";
 import AboutMe from "@components/sections/AboutMe";
-
-export const drawingDatabaseId = process.env.NOTION_DRAWING_DATABASE_ID;
-export const blogPostsDatabaseId = process.env.NOTION_BLOG_DATABASE_ID;
+import css from "./index.module.scss";
+import { getDatabase } from "../lib/notion";
+import { IPost, IDrawing } from "@lib/types";
+import { ArrowRight } from "react-feather";
+import { blogPostsDatabaseId, drawingDatabaseId } from "@lib/config";
+import { formatDrawing, formatPosts } from "@lib/utils";
 
 interface IHomeProps {
 	posts: IPost[];
@@ -61,47 +59,16 @@ export const getStaticProps = async () => {
 	const maxPost = 3;
 	const maxDrawing = 8;
 
-	const drawingDatabase = await (
-		await getDatabase(drawingDatabaseId)
-	).slice(0, maxDrawing);
-	const blogPostsDatabase = await (
-		await getDatabase(blogPostsDatabaseId)
-	).slice(0, maxPost);
-
-	const extractImage = async (url: string): Promise<IImage> => {
-		const { base64, img } = await getPlaiceholder(url, {
-			size: 10,
-		});
-
-		return {
-			...img,
-			blurDataURL: base64,
-		};
-	};
-
-	const formatPosts = async (post: any): Promise<IPost> => {
-		const { Image, Name } = post.properties;
-		const cover = await extractImage(Image.files[0].file.url);
-
-		return {
-			cover,
-			id: post.id,
-			path: `/article/${post.id}`,
-			title: Name.title[0].plain_text,
-		};
-	};
-
-	const formatDrawing = async (drawing: any): Promise<IDrawing> => {
-		const { Image, Name } = drawing.properties;
-		const cover = await extractImage(Image.files[0].file.url);
-
-		return {
-			cover,
-			id: drawing.id,
-			path: `/artwork/${drawing.id}`,
-			title: Name.title[0].plain_text,
-		};
-	};
+	// Potentilaly create a generic function to do that
+	const drawingDatabase = (await getDatabase(drawingDatabaseId)).slice(
+		0,
+		maxDrawing
+	);
+	// Potentilaly create a generic function to do that
+	const blogPostsDatabase = (await getDatabase(blogPostsDatabaseId)).slice(
+		0,
+		maxPost
+	);
 
 	const drawings = await Promise.all(drawingDatabase.map(formatDrawing));
 	const posts = await Promise.all(blogPostsDatabase.map(formatPosts));
