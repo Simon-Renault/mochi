@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import css from "./BuyPrintModal.module.scss";
 import Button from "@components/Button";
 import { PRINT_VARIANTS } from "@lib/config";
 import { X } from "react-feather";
 import { AnimatePresence, motion } from "framer-motion";
 import classNames from "classnames";
+import { IVariant } from "@lib/types";
+import { addProductToCart } from "@lib/helper";
+import { Context } from "@lib/shopContext";
 
 interface IBuyPrintModalProps {
 	show?: boolean;
 	onClose: () => void;
 	title?: string | JSX.Element;
+	prints: IVariant[];
 }
 
 const BuyPrintModal = (props: IBuyPrintModalProps) => {
-	const { onClose } = props;
-	const [selectedCard, setSelectedCard] = useState(0);
+	const { onClose, prints } = props;
+	const [selectedVariant, setSelectedVariant] = useState<IVariant>(prints[0]);
 	const handleCloseClick = () => onClose();
+
+	const { addToCart, cartItems } = useContext(Context);
+
+	const handleAddToCart = async () => {
+		addToCart([...cartItems, selectedVariant]);
+	};
 
 	return (
 		<div className={css.split_body}>
@@ -46,23 +56,24 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 					<div className={css.divider}></div>
 					<h3 className={css.title}>Pick a Size :</h3>
 					<div className={css.size_picker}>
-						{PRINT_VARIANTS.map((card, index) => {
+						{prints.map((print, index) => {
+							const mapping = PRINT_VARIANTS[print.size];
 							return (
 								<SelectableCard
-									title={card.title}
-									dimensions={card.dimensions}
-									price={card.price}
-									isSelected={selectedCard == index}
-									onClick={() => setSelectedCard(index)}
+									title={mapping.title}
+									dimensions={mapping.dimensions}
+									price={print.price.amount}
+									isSelected={selectedVariant.id == print.id}
+									onClick={() => setSelectedVariant(print)}
 									key={`variant-${index}`}
 								/>
 							);
 						})}
 					</div>
 					<AnimatePresence exitBeforeEnter>
-						{PRINT_VARIANTS.map((card, index) => {
+						{prints.map((print, index) => {
 							return (
-								index == selectedCard && (
+								selectedVariant.id == print.id && (
 									<motion.p
 										initial="initial"
 										animate="animate"
@@ -70,7 +81,7 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 										variants={fadeIn}
 										key={`msg-${index}`}
 									>
-										{card.message}
+										{PRINT_VARIANTS[print.size].message}
 									</motion.p>
 								)
 							);
@@ -78,8 +89,8 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 					</AnimatePresence>
 				</main>
 				<footer className={css.footer}>
-					<Button fill>
-						Add to cart — {PRINT_VARIANTS[selectedCard].price}
+					<Button fill onClick={handleAddToCart}>
+						Add to cart — {selectedVariant.price.amount}€
 					</Button>
 				</footer>
 			</div>

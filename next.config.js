@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = withPlaiceholder({
 	images: {
-		domains: ["s3.us-west-2.amazonaws.com"],
+		domains: ["s3.us-west-2.amazonaws.com", "cdn.shopify.com"],
 	},
 	sassOptions: {
 		includePaths: [path.join(__dirname, "styles/shared")],

@@ -1,7 +1,7 @@
 import css from "./HomeGreetings.module.scss";
 import Image from "next/image";
 import { USER } from "@lib/config";
-import cover from "@images/cover.jpg";
+import cover from "@images/cover.png";
 import PageSection from "@components/PageSection";
 
 export default function HomeGreetings() {

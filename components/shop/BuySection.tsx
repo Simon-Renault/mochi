@@ -1,10 +1,10 @@
 import Button from "@components/Button";
-import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import css from "./BuySection.module.scss";
-
 import BuyPrintModal from "@components/shop/BuyPrintModal";
 import Modal from "@components/Modal";
+import { IVariant } from "@lib/types";
+import { Context } from "@lib/shopContext";
 
 interface IcardProps {
 	className?: string;
@@ -32,8 +32,19 @@ const Divider = (props: IDividerProps) => {
 };
 //
 
-export default function BuySection() {
+interface IBuySectionProps {
+	original: IVariant;
+	prints: IVariant[];
+}
+
+export default function BuySection(props: IBuySectionProps) {
+	const { original, prints } = props;
 	const [showModal, setShowModal] = useState(false);
+	const { addToCart, cartItems } = useContext(Context);
+
+	const handleAddToCart = async () => {
+		addToCart([...cartItems, original]);
+	};
 
 	return (
 		<>
@@ -47,15 +58,11 @@ export default function BuySection() {
 						Buy a Print — from 50€
 					</Button>
 					<Divider text="or" />
-					<Button
-						fill
-						outlined
-						onClick={() => {
-							console.log("heyyy");
-						}}
-					>
-						Buy the Original — 1,200€
-					</Button>
+					{original && (
+						<Button fill outlined onClick={handleAddToCart}>
+							Buy the Original — {original.price.amount}€
+						</Button>
+					)}
 				</Card>
 				<Card title="Details" className={css.details}>
 					<div className={css.details_wrapper}>
@@ -71,7 +78,10 @@ export default function BuySection() {
 				</Card>
 			</div>
 			<Modal show={showModal}>
-				<BuyPrintModal onClose={() => setShowModal(false)} />
+				<BuyPrintModal
+					prints={prints}
+					onClose={() => setShowModal(false)}
+				/>
 			</Modal>
 		</>
 	);

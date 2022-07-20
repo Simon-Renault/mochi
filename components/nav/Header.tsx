@@ -4,8 +4,11 @@ import { ShoppingBag } from "react-feather";
 import MobileNav from "@components/nav/MobileNav";
 import { NAV_ITEMS } from "@lib/config";
 import { motion } from "framer-motion";
+import { Context } from "@lib/shopContext";
+import { useContext } from "react";
 
 export default function Header() {
+	const { cartID, cartItems } = useContext(Context);
 	return (
 		<div className={css.header}>
 			<div className={css.header_inner}>
@@ -27,10 +30,11 @@ export default function Header() {
 						))}
 					</ul>
 
-					<Link href="/">
+					<Link href="/cart">
 						<a className={css.shop}>
 							<ShoppingBag size={16} />
 							<span>Basket</span>
+							{true && <span>- {cartItems.length}</span>}
 						</a>
 					</Link>
 				</nav>

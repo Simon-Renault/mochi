@@ -4,10 +4,12 @@ import Footer from "@components/Footer";
 import "../styles/main.scss";
 import css from "./_app.module.scss";
 import Head from "next/head";
+import { useState } from "react";
+import { ContextProvider } from "@lib/shopContext";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 	return (
-		<>
+		<ContextProvider>
 			<Head>
 				<link rel="icon" type="image/png" href="/favicon.png" />
 				<meta
@@ -20,7 +22,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 				<Component {...pageProps} key={router.route} />
 			</div>
 			<Footer />
-		</>
+		</ContextProvider>
 	);
 }
 

@@ -7,10 +7,11 @@ import HomeGreetings from "@components/sections/HomeGreetings";
 import AboutMe from "@components/sections/AboutMe";
 import css from "./index.module.scss";
 import { getDatabase } from "../lib/notion";
-import { IPost, IDrawing } from "@lib/types";
+import { IPost, IDrawing, IImage } from "@lib/types";
 import { ArrowRight } from "react-feather";
-import { blogPostsDatabaseId, drawingDatabaseId } from "@lib/config";
-import { formatDrawing, formatPosts } from "@lib/utils";
+import { blogPostsDatabaseId } from "@lib/config";
+import { formatPosts } from "@lib/utils";
+import { getProducts } from "@lib/shopifyClient";
 
 interface IHomeProps {
 	posts: IPost[];
@@ -57,26 +58,47 @@ export default function Home({ posts, drawings }: IHomeProps) {
 
 export const getStaticProps = async () => {
 	const maxPost = 3;
-	const maxDrawing = 8;
 
-	// Potentilaly create a generic function to do that
-	const drawingDatabase = (await getDatabase(drawingDatabaseId)).slice(
-		0,
-		maxDrawing
-	);
 	// Potentilaly create a generic function to do that
 	const blogPostsDatabase = (await getDatabase(blogPostsDatabaseId)).slice(
 		0,
 		maxPost
 	);
 
-	const drawings = await Promise.all(drawingDatabase.map(formatDrawing));
 	const posts = await Promise.all(blogPostsDatabase.map(formatPosts));
+	const products = await getProducts();
+
+	const getImage = ({ node }: any): IImage => {
+		return {
+			src: node.url,
+			altText: node.altText,
+			width: node.width,
+			height: node.height,
+		};
+	};
+
+	const getImages = (data: any): IImage[] => {
+		return data.edges.map(getImage);
+	};
+
+	const drawings = products.products.edges.map(({ node }: any): IDrawing => {
+		return {
+			cover: getImages(node.images)[0],
+			title: node.title,
+			id: node.id,
+			path: `artwork/${node.handle}`,
+			minPrice: node.priceRange.minVariantPrice.amount,
+			maxPrice: node.priceRange.maxVariantPrice.amount,
+			description: node.description,
+			descriptionHtml: node.descriptionHtml,
+		};
+	});
 
 	return {
 		props: {
 			drawings,
 			posts,
+			products,
 		},
 		revalidate: 1,
 	};

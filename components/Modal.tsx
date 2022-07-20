@@ -3,6 +3,7 @@ import css from "./Modal.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import Portal from "./Portal";
 import classNames from "classnames";
+import { useMediaQuery } from "react-responsive";
 
 interface IModalProps {
 	children: React.ReactNode;
@@ -13,6 +14,8 @@ interface IModalProps {
 
 const Modal = (props: IModalProps) => {
 	const { show, children, className, contentClassName } = props;
+
+	const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
 
 	return (
 		<Portal>
@@ -30,7 +33,9 @@ const Modal = (props: IModalProps) => {
 							initial="initial"
 							animate="animate"
 							exit="exit"
-							variants={mobileMenuVariant}
+							variants={
+								isMobile ? sheetAnimation : modalAnimation
+							}
 						>
 							<motion.div
 								initial="initial"
@@ -58,7 +63,7 @@ export default Modal;
 // Animations
 //
 
-const mobileMenuVariant = {
+const sheetAnimation = {
 	initial: {
 		y: "100%",
 		transition: {
@@ -77,6 +82,32 @@ const mobileMenuVariant = {
 	},
 	exit: {
 		y: "100%",
+		transition: {
+			duration: 0.33,
+			ease: [0.74, 0, 0.19, 1.02],
+		},
+	},
+};
+
+const modalAnimation = {
+	initial: {
+		y: "10%",
+		opacity: 0,
+		transition: {
+			ease: [0.74, 0, 0.19, 1.02],
+		},
+	},
+	animate: {
+		y: "0%",
+		opacity: 1,
+		transition: {
+			duration: 0.66,
+			ease: [0.74, 0, 0.19, 1.02],
+		},
+	},
+	exit: {
+		y: "10%",
+		opacity: 0,
 		transition: {
 			duration: 0.33,
 			ease: [0.74, 0, 0.19, 1.02],

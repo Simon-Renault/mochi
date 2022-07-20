@@ -1,6 +1,7 @@
 export interface IImage {
 	src: string;
-	blurDataURL: string;
+	altText: string;
+	blurDataURL?: string;
 	width: number;
 	height: number;
 }
@@ -17,4 +18,20 @@ export interface IDrawing {
 	title: string;
 	id: string;
 	path: string;
+	minPrice: string;
+	maxPrice: string;
+	descriptionHtml: string;
+	description: string;
+}
+
+export interface IVariant {
+	id: string;
+	type: "original" | "print";
+	size: "medium" | "large" | "small";
+	currentlyNotInStock: boolean;
+	availableForSale: boolean;
+	price: {
+		amount: string;
+		currencyCode: string;
+	};
 }

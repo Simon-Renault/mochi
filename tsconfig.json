@@ -27,8 +27,10 @@
         "**/*.tsx",
         "components/header.jsx",
         "components/PageSection.jsx",
-        "pages/artwork/[id].jsx",
-        "pages/article/[id].jsx"
+        "pages/artwork/[id].tsx",
+        "pages/article/[id].jsx",
+        "lib/shopifyClient.js",
+        "lib/shopContext.jsx"
     ],
     "exclude": ["node_modules"]
 }
