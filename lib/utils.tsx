@@ -9,6 +9,7 @@ export const extractImage = async (url: string): Promise<IImage> => {
 	return {
 		...img,
 		blurDataURL: base64,
+		altText: "",
 	};
 };
 
@@ -21,6 +22,10 @@ export const formatDrawing = async (drawing: any): Promise<IDrawing> => {
 		id: drawing.id,
 		path: `/artwork/${drawing.id}`,
 		title: Name.title[0].plain_text,
+		minPrice: "",
+		maxPrice: "",
+		description: "",
+		descriptionHtml: "",
 	};
 };
 
