@@ -50,9 +50,9 @@ export default function Post({ drawing, variants }: IPostProps) {
 					<div className={css.artwork_page}>
 						{drawing.descriptionHtml && (
 							<div
-								dangerouslySetInnerHTML={
-									drawing.descriptionHtml
-								}
+								dangerouslySetInnerHTML={{
+									__html: drawing.descriptionHtml,
+								}}
 							></div>
 						)}
 
@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		minPrice: product.priceRange.minVariantPrice.amount,
 		maxPrice: product.priceRange.maxVariantPrice.amount,
 		description: product.description,
-		descriptionHtml: { __html: product.descriptionHtml },
+		descriptionHtml: product.descriptionHtml,
 	};
 
 	const data = await getVariants(id);
