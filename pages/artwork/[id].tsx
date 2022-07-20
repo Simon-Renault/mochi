@@ -105,16 +105,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 	const data = await getVariants(id);
 
-	const getOptionFromVariantNode = (node, optionName) => {
+	const getOptionFromVariantNode = (node: any, optionName: any) => {
 		return node.selectedOptions
 			.find(
-				(option) =>
+				(option: any) =>
 					option.name.toLowerCase() == optionName.toLowerCase()
 			)
 			.value.toLowerCase();
 	};
 
-	const nodes = data.product.variants.edges.map(({ node }) => {
+	const nodes = data.product.variants.edges.map(({ node }: any) => {
 		const type = getOptionFromVariantNode(node, "type");
 		const size = getOptionFromVariantNode(node, "size");
 
@@ -126,7 +126,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		};
 	});
 
-	const [original, prints] = partition(nodes, (n) => n.type == "original");
+	const [original, prints] = partition(
+		nodes,
+		(n: any) => n.type == "original"
+	);
 
 	console.log(original, prints);
 
@@ -142,9 +145,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 };
 
-function partition(array, isValid) {
+function partition(array: any, isValid: any) {
 	return array.reduce(
-		([pass, fail], elem) => {
+		([pass, fail]: any, elem: any) => {
 			return isValid(elem)
 				? [[...pass, elem], fail]
 				: [pass, [...fail, elem]];
