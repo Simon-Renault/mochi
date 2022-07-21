@@ -19,7 +19,10 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 			</Head>
 			<Header />
 			<div className={css.scroll_container}>
-				<AnimatePresence exitBeforeEnter>
+				<AnimatePresence
+					exitBeforeEnter
+					onExitComplete={() => window.scrollTo(0, 0)}
+				>
 					<Component {...pageProps} key={router.route} />
 				</AnimatePresence>
 			</div>
