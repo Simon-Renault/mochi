@@ -6,28 +6,10 @@ import css from "./_app.module.scss";
 import Head from "next/head";
 import { ContextProvider } from "@lib/shopContext";
 import { AnimatePresence } from "framer-motion";
-import Router from "next/router";
-
-const tempFix = () => {
-	const allStyleElems = document.querySelectorAll('style[media="x"]');
-	allStyleElems.forEach((elem) => {
-		elem.removeAttribute("media");
-	});
-};
-const routeChange = () => {
-	// Temporary fix to avoid flash of unstyled content
-	// during route transitions. Keep an eye on this
-	// issue and remove this code when resolved:
-	// https://github.com/vercel/next.js/issues/17464
-
-	tempFix();
-};
-
-Router.events.on("routeChangeComplete", routeChange);
-Router.events.on("routeChangeStart", routeChange);
+import { usePageTransitionFix } from "@lib/use-page-transition-fix";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-	tempFix();
+	usePageTransitionFix();
 	return (
 		<ContextProvider>
 			<Head>
@@ -39,7 +21,11 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 			</Head>
 			<Header />
 			<div className={css.scroll_container}>
-				<AnimatePresence exitBeforeEnter initial={false}>
+				<AnimatePresence
+					exitBeforeEnter
+					initial={false}
+					onExitComplete={() => window.scrollTo(0, 0)}
+				>
 					<Component {...pageProps} key={router.route} />
 				</AnimatePresence>
 			</div>
