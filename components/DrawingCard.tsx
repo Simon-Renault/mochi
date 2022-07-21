@@ -4,7 +4,6 @@ import Image from "next/image";
 import css from "./DrawingCard.module.scss";
 import { IDrawing } from "@lib/types";
 import currency from "currency.js";
-import classNames from "classnames";
 import { motion } from "framer-motion";
 
 interface IDrawingCardProps {
