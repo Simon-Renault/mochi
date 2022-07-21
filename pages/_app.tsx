@@ -5,11 +5,8 @@ import "../styles/main.scss";
 import css from "./_app.module.scss";
 import Head from "next/head";
 import { ContextProvider } from "@lib/shopContext";
-import { AnimatePresence } from "framer-motion";
-import { usePageTransitionFix } from "@lib/use-page-transition-fix";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-	usePageTransitionFix();
 	return (
 		<ContextProvider>
 			<Head>
@@ -21,9 +18,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 			</Head>
 			<Header />
 			<div className={css.scroll_container}>
-				<AnimatePresence exitBeforeEnter>
-					<Component {...pageProps} key={router.route} />
-				</AnimatePresence>
+				<Component {...pageProps} key={router.route} />
 			</div>
 			<div className={css.noise}></div>
 			<Footer />
