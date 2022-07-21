@@ -45,7 +45,7 @@ export default function Home({ posts, drawings }: IHomeProps) {
 								description="Sometimes I let my mind wander and decide to write
 	about various topics."
 							/>
-							<Button rounded>
+							<Button rounded className={css.action}>
 								Explore all <ArrowRight size={16} />
 							</Button>
 						</div>
@@ -57,6 +57,13 @@ export default function Home({ posts, drawings }: IHomeProps) {
 								);
 							})}
 						</div>
+						<Button
+							rounded
+							href="/blog"
+							className={css.mobile_action}
+						>
+							Explore all <ArrowRight size={16} />
+						</Button>
 					</div>
 				</PageSection>
 			</main>

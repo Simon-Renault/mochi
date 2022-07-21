@@ -1,12 +1,3 @@
-.card {
-	border-radius: 12px;
-	border: 1px solid var(--off-white-3);
-	padding: 30px 30px;
-	&_title {
-		@include H5;
-	}
-}
-
 .section {
 	position: sticky;
 	display: flex;
@@ -14,13 +5,17 @@
 	top: calc(var(--header-height) + 50px);
 	border-radius: 12px;
 	border: 1px solid var(--off-white-3);
-}
+	overflow: hidden;
+	background-color: var(--white);
+	.card {
+		border-radius: 12px;
+		padding: 30px 30px;
+		border-radius: 0;
+		border: none;
 
-.card {
-	border-radius: 0;
-	border: none;
-	&:first-child {
-		border-bottom: 1px solid var(--off-white-3);
+		&_title {
+			@include H5;
+		}
 	}
 }
 

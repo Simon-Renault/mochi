@@ -1,4 +1,5 @@
 import { IDrawing } from "@lib/types";
+import { ArrowRight } from "react-feather";
 import Button from "./Button";
 import DrawingCard from "./DrawingCard";
 import css from "./Gallery.module.scss";
@@ -19,7 +20,9 @@ export default function Gallery({ drawings }: IGalleryProps) {
 					/>
 				);
 			})}
-			<Button className={css.view_all}>View all</Button>
+			<Button className={css.view_all} rounded>
+				More artworks <ArrowRight size={16} />
+			</Button>
 		</div>
 	);
 }

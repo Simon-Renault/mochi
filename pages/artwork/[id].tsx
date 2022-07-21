@@ -7,6 +7,7 @@ import { IDrawing, IImage, IVariant } from "@lib/types";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
 import PageWrapper from "@components/PageWrapper";
+import { TextContainer } from "@components/TextContainer";
 
 interface IPostProps {
 	drawing: IDrawing;
@@ -25,7 +26,7 @@ export default function Post({ drawing, variants }: IPostProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<PageSection className={css.top}>
+				<div className={css.top}>
 					<div className={css.artwork_title}>
 						<p className={css.id}>01 - 10</p>
 						<div className={css.artwork_title_inner}>
@@ -45,16 +46,18 @@ export default function Post({ drawing, variants }: IPostProps) {
 							<img />
 						</div>
 					</div>
-				</PageSection>
+				</div>
 
 				<PageSection className={css.content}>
 					<div className={css.artwork_page}>
 						{drawing.descriptionHtml && (
-							<div
-								dangerouslySetInnerHTML={{
-									__html: drawing.descriptionHtml,
-								}}
-							></div>
+							<TextContainer>
+								<div
+									dangerouslySetInnerHTML={{
+										__html: drawing.descriptionHtml,
+									}}
+								></div>
+							</TextContainer>
 						)}
 
 						<div className={css.sidebar}>

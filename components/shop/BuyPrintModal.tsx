@@ -6,8 +6,8 @@ import { X } from "react-feather";
 import { AnimatePresence, motion } from "framer-motion";
 import classNames from "classnames";
 import { IVariant } from "@lib/types";
-import { addProductToCart } from "@lib/helper";
 import { Context } from "@lib/shopContext";
+import currency from "currency.js";
 
 interface IBuyPrintModalProps {
 	show?: boolean;
@@ -62,7 +62,11 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 								<SelectableCard
 									title={mapping.title}
 									dimensions={mapping.dimensions}
-									price={print.price.amount}
+									price={`${
+										currency(print.price.amount, {
+											precision: 0,
+										}).value
+									}€`}
 									isSelected={selectedVariant.id == print.id}
 									onClick={() => setSelectedVariant(print)}
 									key={`variant-${index}`}

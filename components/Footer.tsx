@@ -2,6 +2,7 @@ import PageSection from "./PageSection";
 import { Twitter, Mail, Instagram, ArrowRight } from "react-feather";
 import css from "./Footer.module.scss";
 import { Border } from "./Border";
+import Button from "./Button";
 
 export default function Footer() {
 	return (
@@ -9,7 +10,7 @@ export default function Footer() {
 			<Border />
 			<PageSection elevated={true} className={css.section}>
 				<footer className={css.footer}>
-					<div className={css.footer_section}>
+					<div>
 						<p className={css.footer_section_title}>Newsletter</p>
 						<p className={css.newsletter_description}>
 							Subscribe to my newsletter to get news about new
@@ -21,12 +22,13 @@ export default function Footer() {
 								type="text"
 								placeholder="Type your email here..."
 							/>
-							<button>
+
+							<Button className={css.button}>
 								Subscribe <ArrowRight size={16} />
-							</button>
+							</Button>
 						</div>
 					</div>
-					<div className={css.footer_section}>
+					<div>
 						<p className={css.footer_section_title}>Contact</p>
 						<div className={css.socials}>
 							<ul>

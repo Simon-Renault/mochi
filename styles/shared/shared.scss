@@ -3,7 +3,7 @@
 @mixin serif {
 	font-family: var(--font-family-serif);
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	line-height: 1.5em;
 	color: var(--black);
 	@media (max-width: 480px) {
@@ -21,13 +21,13 @@ $font-base-size: 1.6;
 
 @mixin H1 {
 	@include serif;
-	font-weight: 200;
-	font-size: 40px;
+	font-size: 45px;
 	line-height: 1.3em;
 	word-spacing: 0.1em;
 	letter-spacing: -1px;
 	@media (min-width: 480px) {
 		font-size: 60px;
+		font-weight: 200;
 	}
 }
 
@@ -65,18 +65,28 @@ $font-base-size: 1.6;
 	font-family: var(--font-family);
 	color: var(--grey-2);
 	font-weight: 200;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.6em;
 	margin-bottom: 1.4em;
+	@media (min-width: 480px) {
+		font-size: 18px;
+		line-height: 1.6em;
+		margin-bottom: 1.4em;
+	}
 }
 
 @mixin TextReadable {
 	font-family: var(--font-family);
 	color: var(--grey-2);
 	font-weight: 200;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 1.8em;
 	margin-bottom: 1.4em;
+	@media (min-width: 480px) {
+		font-size: 20px;
+		line-height: 1.8em;
+		margin-bottom: 1.4em;
+	}
 }
 
 @mixin subtitle {
