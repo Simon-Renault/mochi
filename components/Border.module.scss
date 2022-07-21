@@ -1,0 +1,13 @@
+.border {
+	display: block;
+	left: 0;
+	right: 0;
+	top: 1%;
+	width: 100vw;
+	height: auto;
+	pointer-events: none;
+	fill: var(--off-white-1);
+	&.white {
+		transform: scale(-1);
+	}
+}

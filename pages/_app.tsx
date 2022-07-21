@@ -4,8 +4,8 @@ import Footer from "@components/Footer";
 import "../styles/main.scss";
 import css from "./_app.module.scss";
 import Head from "next/head";
-import { useState } from "react";
 import { ContextProvider } from "@lib/shopContext";
+import { AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 	return (
@@ -19,8 +19,11 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 			</Head>
 			<Header />
 			<div className={css.scroll_container}>
-				<Component {...pageProps} key={router.route} />
+				<AnimatePresence exitBeforeEnter>
+					<Component {...pageProps} key={router.route} />
+				</AnimatePresence>
 			</div>
+			<div className={css.noise}></div>
 			<Footer />
 		</ContextProvider>
 	);

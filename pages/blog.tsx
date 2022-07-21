@@ -6,6 +6,7 @@ import { getDatabase } from "../lib/notion";
 import css from "./blog.module.scss";
 import { formatPosts } from "@lib/utils";
 import { blogPostsDatabaseId } from "@lib/config";
+import PageWrapper from "@components/PageWrapper";
 
 interface IBlogProps {
 	posts: IPost[];
@@ -13,21 +14,23 @@ interface IBlogProps {
 
 export default function Blog({ posts }: IBlogProps) {
 	return (
-		<main>
-			<PageSection>
-				<TitleSection
-					title="Articles"
-					description="Sometimes I let my mind wander and decide to write
+		<PageWrapper key="blog">
+			<main>
+				<PageSection>
+					<TitleSection
+						title="Articles"
+						description="Sometimes I let my mind wander and decide to write
 	about various topics."
-				/>
+					/>
 
-				<div className={css.list}>
-					{posts.map((post) => {
-						return <ArticleCard post={post} key={post.id} />;
-					})}
-				</div>
-			</PageSection>
-		</main>
+					<div className={css.list}>
+						{posts.map((post) => {
+							return <ArticleCard post={post} key={post.id} />;
+						})}
+					</div>
+				</PageSection>
+			</main>
+		</PageWrapper>
 	);
 }
 

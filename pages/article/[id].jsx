@@ -4,6 +4,7 @@ import css from "./post.module.scss";
 import RenderPage from "../../lib/notionPage";
 import PageSection from "@components/PageSection";
 import { blogPostsDatabaseId } from "@lib/config";
+import PageWrapper from "@components/PageWrapper";
 
 export default function Post({ page, blocks }) {
     if (!page || !blocks) {
@@ -13,7 +14,7 @@ export default function Post({ page, blocks }) {
     const title = page.properties.Name.title[0].plain_text;
 
     return (
-        <>
+        <PageWrapper key="article">
             <Head>
                 <title>{title}</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -39,7 +40,7 @@ export default function Post({ page, blocks }) {
                     <div className={css.artwork_page}>{RenderPage(blocks)}</div>
                 </PageSection>
             </main>
-        </>
+        </PageWrapper>
     );
 }
 

@@ -6,9 +6,7 @@
 	transition: all 0.3s ease;
 
 	&:hover {
-		.imageContainer {
-			opacity: 70%;
-		}
+		opacity: 70%;
 	}
 
 	.imageContainer {
@@ -24,7 +22,7 @@
 
 		img {
 			transition: ease-in 0.3s;
-			transform: scale(1.01);
+			transform: scale(1.15);
 		}
 
 		> span {

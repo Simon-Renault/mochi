@@ -5,6 +5,7 @@ import { getDatabase } from "../lib/notion";
 import Gallery from "@components/Gallery";
 import { drawingDatabaseId } from "@lib/config";
 import { formatDrawing } from "@lib/utils";
+import PageWrapper from "@components/PageWrapper";
 
 interface IArtworkProps {
 	drawings: IDrawing[];
@@ -12,17 +13,19 @@ interface IArtworkProps {
 
 export default function Blog({ drawings }: IArtworkProps) {
 	return (
-		<main>
-			<PageSection>
-				<TitleSection
-					title="Gallery"
-					description="Sometimes I let my mind wander and decide to write
+		<PageWrapper key="artworks">
+			<main>
+				<PageSection>
+					<TitleSection
+						title="Gallery"
+						description="Sometimes I let my mind wander and decide to write
 	about various topics."
-				/>
+					/>
 
-				<Gallery drawings={drawings} />
-			</PageSection>
-		</main>
+					<Gallery drawings={drawings} />
+				</PageSection>
+			</main>
+		</PageWrapper>
 	);
 }
 

@@ -6,6 +6,7 @@ import { getProduct, getProducts, getVariants } from "@lib/shopifyClient";
 import { IDrawing, IImage, IVariant } from "@lib/types";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
+import PageWrapper from "@components/PageWrapper";
 
 interface IPostProps {
 	drawing: IDrawing;
@@ -18,7 +19,7 @@ export default function Post({ drawing, variants }: IPostProps) {
 	if (!drawing) return <div />;
 	const { original, prints } = variants;
 	return (
-		<>
+		<PageWrapper key="artwork">
 			<Head>
 				<title>{drawing.title}</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -62,7 +63,7 @@ export default function Post({ drawing, variants }: IPostProps) {
 					</div>
 				</PageSection>
 			</main>
-		</>
+		</PageWrapper>
 	);
 }
 

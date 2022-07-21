@@ -4,6 +4,7 @@ import { Context } from "@lib/shopContext";
 import { useContext } from "react";
 import Router from "next/router";
 import { IVariant } from "@lib/types";
+import PageWrapper from "@components/PageWrapper";
 
 export default function Blog() {
 	const { cartID, cartItems } = useContext(Context);
@@ -18,14 +19,16 @@ export default function Blog() {
 	};
 
 	return (
-		<main>
-			<div>
-				{cartItems.map((item: IVariant) => {
-					return <li key={item.id}>{JSON.stringify(item)}</li>;
-				})}
-			</div>
-			<Button onClick={handleClick}>Checkout</Button>
-		</main>
+		<PageWrapper key="cart">
+			<main>
+				<div>
+					{cartItems.map((item: IVariant) => {
+						return <li key={item.id}>{JSON.stringify(item)}</li>;
+					})}
+				</div>
+				<Button onClick={handleClick}>Checkout</Button>
+			</main>
+		</PageWrapper>
 	);
 }
 

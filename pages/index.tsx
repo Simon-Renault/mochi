@@ -12,6 +12,8 @@ import { ArrowRight } from "react-feather";
 import { blogPostsDatabaseId } from "@lib/config";
 import { formatPosts } from "@lib/utils";
 import { getProducts } from "@lib/shopifyClient";
+import { Border } from "@components/Border";
+import PageWrapper from "@components/PageWrapper";
 
 interface IHomeProps {
 	posts: IPost[];
@@ -20,39 +22,45 @@ interface IHomeProps {
 
 export default function Home({ posts, drawings }: IHomeProps) {
 	return (
-		<main className={css.container}>
-			<HomeGreetings />
-			<PageSection className={css.section_artworks}>
-				<TitleSection
-					title="Featured work"
-					description="A collection of my best work, carefuly curated and kept up to date by myself"
-				/>
-				<Gallery drawings={drawings} />
-			</PageSection>
-			<PageSection elevated={true}>
-				<AboutMe />
-			</PageSection>
-			<PageSection>
-				<div className={css.columns}>
-					<div>
-						<TitleSection
-							title="Articles"
-							description="Sometimes I let my mind wander and decide to write
+		<PageWrapper key="index">
+			<main className={css.container}>
+				<HomeGreetings />
+				<PageSection className={css.section_artworks}>
+					<TitleSection
+						title="Featured work"
+						description="A collection of my best work, carefuly curated and kept up to date by myself"
+					/>
+					<Gallery drawings={drawings} />
+				</PageSection>
+				<Border />
+				<PageSection elevated={true} className={css.about}>
+					<AboutMe />
+				</PageSection>
+				<Border isWhite />
+				<PageSection>
+					<div className={css.columns}>
+						<div>
+							<TitleSection
+								title="Articles"
+								description="Sometimes I let my mind wander and decide to write
 	about various topics."
-						/>
-						<Button rounded>
-							Explore all <ArrowRight size={16} />
-						</Button>
-					</div>
+							/>
+							<Button rounded>
+								Explore all <ArrowRight size={16} />
+							</Button>
+						</div>
 
-					<div className={css.list}>
-						{posts.map((post) => {
-							return <ArticleCard post={post} key={post.id} />;
-						})}
+						<div className={css.list}>
+							{posts.map((post) => {
+								return (
+									<ArticleCard post={post} key={post.id} />
+								);
+							})}
+						</div>
 					</div>
-				</div>
-			</PageSection>
-		</main>
+				</PageSection>
+			</main>
+		</PageWrapper>
 	);
 }
 
