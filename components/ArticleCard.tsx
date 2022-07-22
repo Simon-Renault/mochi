@@ -2,31 +2,25 @@ import React from "react";
 import Link from "next/link";
 import css from "./ArticleCard.module.scss";
 import Image from "next/image";
-import { IPost } from "@lib/types";
+import { storyblokEditable } from "@storyblok/react";
 
-interface IArticleCardProps {
-	post: IPost;
-}
-
-const ArticleCard = (props: IArticleCardProps): JSX.Element => {
-	const { cover, path, title } = props.post;
+const ArticleCard = ({ blok }): JSX.Element => {
+	const { article } = blok;
+	if (!article) return <div>no article</div>;
 	return (
-		<Link href={path}>
-			<a>
+		<Link href={"/"}>
+			<a {...storyblokEditable(blok)}>
 				<div className={css.articleCard}>
 					<div className={css.imageContainer}>
 						<Image
-							src={cover.src}
-							blurDataURL={cover.blurDataURL}
+							src={article.content.cover.filename}
 							layout="fill"
 							alt="Picture of the author"
-							placeholder="blur"
-							unoptimized={true}
 						/>
 					</div>
 					<div className={css.description}>
 						<p className={css.date}>Oct 24, 2021</p>
-						<p className={css.title}>{title}</p>
+						<p className={css.title}>{article.name}</p>
 					</div>
 				</div>
 			</a>

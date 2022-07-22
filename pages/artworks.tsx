@@ -22,7 +22,7 @@ export default function Blog({ drawings }: IArtworkProps) {
 	about various topics."
 					/>
 
-					<Gallery drawings={drawings} />
+					{/* <Gallery drawings={drawings} /> */}
 				</PageSection>
 			</main>
 		</PageWrapper>

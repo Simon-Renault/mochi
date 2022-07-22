@@ -8,14 +8,13 @@ export default function Section({ blok }) {
 	const borderTop = blok.borders.includes("top");
 	const borderBottom = blok.borders.includes("bottom");
 	return (
-		<>
+		<div {...storyblokEditable(blok)}>
 			{borderTop && <Border elevated={blok.elevated} position="top" />}
 			<div
 				className={classNames(
 					css.page_section,
 					blok.elevated && css.elevated
 				)}
-				{...storyblokEditable(blok)}
 			>
 				<div className={css.inner}>
 					{blok.content.map((b) => (
@@ -26,6 +25,6 @@ export default function Section({ blok }) {
 			{borderBottom && (
 				<Border elevated={blok.elevated} position="bottom" />
 			)}
-		</>
+		</div>
 	);
 }
