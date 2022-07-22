@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface IPageWrapperProps {
-	key: string;
+	_key: string;
 	children: ReactNode;
 }
 
@@ -27,14 +27,14 @@ const variants = {
 	},
 };
 
-const PageWrapper = ({ key, children }: IPageWrapperProps) => {
+const PageWrapper = ({ _key, children }: IPageWrapperProps) => {
 	return (
 		<motion.div
 			initial="initial"
 			animate="animate"
 			exit="exit"
 			variants={variants}
-			key={key}
+			key={_key}
 		>
 			{children}
 		</motion.div>

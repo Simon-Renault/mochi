@@ -5,6 +5,14 @@ import "../styles/main.scss";
 import css from "./_app.module.scss";
 import Head from "next/head";
 import { ContextProvider } from "@lib/shopContext";
+import { storyblokInit, apiPlugin } from "@storyblok/react";
+import { Components } from "@components/Index";
+
+storyblokInit({
+	accessToken: "zU1H0F3sS62GagpvKUTlnQtt",
+	use: [apiPlugin],
+	components: Components,
+});
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 	return (

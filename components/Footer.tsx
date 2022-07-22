@@ -7,7 +7,6 @@ import Button from "./Button";
 export default function Footer() {
 	return (
 		<>
-			<Border />
 			<PageSection elevated={true} className={css.section}>
 				<footer className={css.footer}>
 					<div>
@@ -28,7 +27,7 @@ export default function Footer() {
 							</Button>
 						</div>
 					</div>
-					<div>
+					<div className={css.links}>
 						<p className={css.footer_section_title}>Contact</p>
 						<div className={css.socials}>
 							<ul>

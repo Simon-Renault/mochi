@@ -13,7 +13,7 @@ interface IArtworkProps {
 
 export default function Blog({ drawings }: IArtworkProps) {
 	return (
-		<PageWrapper key="artworks">
+		<PageWrapper _key="artworks">
 			<main>
 				<PageSection>
 					<TitleSection

@@ -2,13 +2,18 @@ import classNames from "classnames";
 import css from "./Border.module.scss";
 
 interface IBorderProps {
-	isWhite?: boolean;
+	elevated: boolean;
+	position: "top" | "bottom";
 }
 
-export const Border = ({ isWhite }: IBorderProps) => {
+export const Border = ({ elevated, position }: IBorderProps) => {
 	return (
 		<svg
-			className={classNames(css.border, isWhite && css.white)}
+			className={classNames(
+				css.border,
+				elevated && css.elevated,
+				position == "bottom" && css.bottom
+			)}
 			viewBox="0 0 1600 150"
 			xmlns="http://www.w3.org/2000/svg"
 		>

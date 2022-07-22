@@ -120,6 +120,20 @@
   resolved "https://registry.yarnpkg.com/@plaiceholder/next/-/next-2.4.0.tgz#092d6cf4fa8557ae0100b47ca5917d4ca451cbba"
   integrity sha512-/8fL7zlC6P1YxSxDymAGFt84szDaFQUWOVWrN8BcESroicx8HMCJ50TcmOqr2sInda2wNQ1lcqhEYcxdwytqFQ==
 
+"@storyblok/js@^1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-1.6.3.tgz#01e51fcd0c825197f7b4df279b5413cf1453aace"
+  integrity sha512-8VUPLoe4RlSPkOGcc+u9WbzZwDlY9tCxKcNg48F/jifx32zVeyVuAAYo7RLZNbDcV4QEr6aoAppxdBF+slD5Kg==
+  dependencies:
+    storyblok-js-client "^4.5.6"
+
+"@storyblok/react@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-1.0.14.tgz#10db297d22d6fc514b44fe25fc9839c588ffe4ea"
+  integrity sha512-MScqlOb8jk+e2tsUEiYmN4RzpqpqHImln4i36w+hmpWWd50Um0iCt3jeIZU6eW37KA/UcsAtrKelbcfLyq0ayA==
+  dependencies:
+    "@storyblok/js" "^1.6.3"
+
 "@swc/helpers@0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.4.2.tgz#ed1f6997ffbc22396665d9ba74e2a5c0a2d782f8"
@@ -223,6 +237,14 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
+
+axios@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+  dependencies:
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
 
 base64-js@^1.3.1:
   version "1.5.1"
@@ -411,10 +433,24 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+follow-redirects@^1.14.9:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
+
 form-data@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.1.tgz#ebd53791b78356a99af9a300d4282c4d5eb9755f"
   integrity sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
+
+form-data@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
+  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
@@ -937,6 +973,16 @@ simple-swizzle@^0.2.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+storyblok-js-client@^4.5.6:
+  version "4.5.6"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-4.5.6.tgz#caab0bb1ead8618f84afcc35be9305883d85e628"
+  integrity sha512-S0cXKkEqGDibD32K48FFodjeu/+eF++nrHhrLzo/bKxrnyQiPChPccFAnzsJCQ6uMvRuVGZzjKwM5/sMeBRthg==
+
+storyblok-react@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/storyblok-react/-/storyblok-react-0.1.2.tgz#798672e1111cec68dc487985b1fbba15129fc90d"
+  integrity sha512-68KtSgkAT/0XZ9diz3wfoPl6xOt3WJmCv03qZOZUNPs1uDFh1FHF7P9OHt6TfMcxPrv3ldjTypkQXbFdT7JnvA==
 
 string_decoder@^1.1.1:
   version "1.3.0"

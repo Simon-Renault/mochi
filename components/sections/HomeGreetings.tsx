@@ -1,30 +1,25 @@
 import css from "./HomeGreetings.module.scss";
 import Image from "next/image";
-import { USER } from "@lib/config";
-import cover from "@images/cover.png";
 import PageSection from "@components/PageSection";
+import { storyblokEditable } from "@storyblok/react";
 
-export default function HomeGreetings() {
+export default function HomeGreetings({ blok }) {
 	return (
-		<div className={css.section_top}>
+		<div className={css.section_top} {...storyblokEditable(blok)}>
 			<PageSection className={css.greetings}>
 				<p className={css.welcome}>Welcome</p>
 				<p className={css.heading}>
-					<span className={css.hello}>Hey, I’m {USER.FirstName}</span>
+					<span className={css.hello}>Hey, I’m {blok.name}</span>
 					<span className={css.divider}> — </span>
-					<span className={css.intro}>
-						Artist & creator who enjoys mixing nature and cities,
-						with a touch of chaos.
-					</span>
+					<span className={css.intro}>{blok.greeting}</span>
 				</p>
 			</PageSection>
 
 			<div className={css.image_container}>
 				<Image
-					src={cover}
+					src={blok.cover.filename}
 					alt="Picture of the author"
 					layout="fill"
-					placeholder="blur"
 					quality={20}
 				/>
 			</div>

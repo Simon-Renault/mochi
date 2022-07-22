@@ -14,7 +14,7 @@ export default function Post({ page, blocks }) {
     const title = page.properties.Name.title[0].plain_text;
 
     return (
-        <PageWrapper key="article">
+        <PageWrapper _key="article">
             <Head>
                 <title>{title}</title>
                 <link rel="icon" href="/favicon.ico" />

@@ -6,8 +6,13 @@
 	width: 100vw;
 	height: auto;
 	pointer-events: none;
-	fill: var(--off-white-1);
-	&.white {
+	fill: var(--white);
+
+	&.elevated {
+		fill: var(--off-white-1);
+	}
+
+	&.bottom {
 		transform: scale(-1);
 	}
 }

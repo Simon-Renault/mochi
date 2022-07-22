@@ -62,9 +62,10 @@
 }
 
 .socials {
-	margin-top: 20px;
-	margin-bottom: 40px;
+	margin-top: 10px;
+	margin-bottom: 20px;
 	ul {
+		margin-top: auto;
 		list-style: none;
 		display: flex;
 		flex-direction: row;
@@ -93,7 +94,11 @@
 		}
 	}
 }
-
+.links {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 0;
+}
 .contact {
 	list-style: none;
 	display: flex;
@@ -104,6 +109,6 @@
 		display: flex;
 		list-style: none;
 		@include TextBase;
-		margin: 0;
+		margin-bottom: 0 !important;
 	}
 }

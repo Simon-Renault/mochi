@@ -3,7 +3,6 @@ import ArticleCard from "@components/ArticleCard";
 import TitleSection from "@components/TitleSection";
 import Gallery from "@components/Gallery";
 import Button from "@components/Button";
-import HomeGreetings from "@components/sections/HomeGreetings";
 import AboutMe from "@components/sections/AboutMe";
 import css from "./index.module.scss";
 import { getDatabase } from "../lib/notion";
@@ -12,31 +11,35 @@ import { ArrowRight } from "react-feather";
 import { blogPostsDatabaseId } from "@lib/config";
 import { formatPosts } from "@lib/utils";
 import { getProducts } from "@lib/shopifyClient";
-import { Border } from "@components/Border";
 import PageWrapper from "@components/PageWrapper";
+import {
+	getStoryblokApi,
+	StoryblokComponent,
+	useStoryblokState,
+} from "@storyblok/react";
 
 interface IHomeProps {
+	story: any;
+	key: any;
 	posts: IPost[];
 	drawings: IDrawing[];
 }
 
-export default function Home({ posts, drawings }: IHomeProps) {
+export default function Home({ posts, drawings, story }: IHomeProps) {
+	story = useStoryblokState(story);
 	return (
-		<PageWrapper key="index">
+		<PageWrapper _key="index">
 			<main className={css.container}>
-				<HomeGreetings />
+				<StoryblokComponent blok={story.content} />
+
 				<PageSection className={css.section_artworks}>
-					<TitleSection
-						title="Featured work"
-						description="A collection of my best work, carefuly curated and kept up to date by myself"
-					/>
 					<Gallery drawings={drawings} />
 				</PageSection>
-				<Border />
+
 				<PageSection elevated={true} className={css.about}>
 					<AboutMe />
 				</PageSection>
-				<Border isWhite />
+
 				<PageSection>
 					<div className={css.columns}>
 						<div>
@@ -72,6 +75,18 @@ export default function Home({ posts, drawings }: IHomeProps) {
 }
 
 export const getStaticProps = async () => {
+	let slug = "home";
+
+	// load the draft version
+	let sbParams = {
+		version: "draft", // or 'published'
+	};
+
+	const storyblokApi = getStoryblokApi();
+
+	let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams);
+
+	////
 	const maxPost = 3;
 
 	// Potentilaly create a generic function to do that
@@ -111,6 +126,8 @@ export const getStaticProps = async () => {
 
 	return {
 		props: {
+			story: data ? data.story : false,
+			key: data ? data.story.id : false,
 			drawings,
 			posts,
 			products,
