@@ -1,0 +1,375 @@
+{
+  "components": [
+    {
+      "name": "about",
+      "display_name": null,
+      "created_at": "2022-07-22T13:46:56.868Z",
+      "updated_at": "2022-07-22T16:21:56.370Z",
+      "id": 2724757,
+      "schema": {
+        "text": {
+          "type": "textarea",
+          "key": "Text",
+          "pos": 0
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "about",
+      "component_group_uuid": "bc75f84a-1fe6-43ed-9549-2b16e0a103fe",
+      "color": "#fbce41",
+      "icon": null,
+      "component_group_name": "Atoms"
+    },
+    {
+      "name": "article_card",
+      "display_name": null,
+      "created_at": "2022-07-22T14:22:32.134Z",
+      "updated_at": "2022-07-22T16:38:10.074Z",
+      "id": 2724900,
+      "schema": {
+        "article": {
+          "type": "option",
+          "source": "internal_stories",
+          "filter_content_type": [
+            "blogpost"
+          ],
+          "use_uuid": true,
+          "folder_slug": "blog/"
+        }
+      },
+      "image": null,
+      "preview_field": "article",
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "article_card",
+      "component_group_uuid": null,
+      "color": null,
+      "icon": null
+    },
+    {
+      "name": "artwork",
+      "display_name": null,
+      "created_at": "2022-07-22T12:15:38.860Z",
+      "updated_at": "2022-08-05T12:27:40.180Z",
+      "id": 2724324,
+      "schema": {
+        "isOriginalForSale": {
+          "type": "boolean",
+          "key": "isOriginalForSale",
+          "pos": 0
+        },
+        "originalPrice": {
+          "type": "number",
+          "default_value": 1000,
+          "key": "originalPrice",
+          "pos": 1
+        },
+        "large": {
+          "type": "section",
+          "pos": 2,
+          "key": "large",
+          "keys": [
+            "largePrice",
+            "largeQuantityLeft"
+          ]
+        },
+        "largeQuantityLeft": {
+          "type": "number",
+          "default_value": 10,
+          "min_value": 0,
+          "max_value": 10,
+          "steps": 1,
+          "decimals": 0,
+          "pos": 3
+        },
+        "largePrice": {
+          "type": "number",
+          "key": "LargePrice",
+          "pos": 4
+        },
+        "medium": {
+          "type": "section",
+          "keys": [
+            "MediumPrice",
+            "SmallPrice",
+            "mediumPrice"
+          ],
+          "key": "medium",
+          "pos": 5
+        },
+        "mediumPrice": {
+          "type": "number",
+          "key": "mediumPrice",
+          "pos": 6
+        },
+        "small": {
+          "type": "section",
+          "pos": 7,
+          "keys": [
+            "smallPrice"
+          ],
+          "key": "small"
+        },
+        "smallPrice": {
+          "type": "number",
+          "key": "smallPrice",
+          "pos": 8
+        },
+        "cover": {
+          "type": "asset",
+          "pos": 9,
+          "key": "cover"
+        },
+        "tab-53260d35-f0e6-4259-a252-2bbb73794b7a": {
+          "display_name": "Content",
+          "keys": [
+            "text"
+          ],
+          "pos": 10,
+          "type": "tab",
+          "key": "tab-53260d35-f0e6-4259-a252-2bbb73794b7a"
+        },
+        "text": {
+          "type": "richtext",
+          "key": "text",
+          "pos": 11
+        },
+        "tab-957e8c9f-ea36-49c4-9c0a-e8d4bd7ac7c7": {
+          "display_name": "Shop",
+          "keys": [
+            "IsOriginalForSale",
+            "isOriginalForSale",
+            "originalPrice",
+            "Variants",
+            "MediumPrice",
+            "SmallPrice",
+            "LargePrice",
+            "mediumPrice",
+            "smallPrice",
+            "small",
+            "large",
+            "medium",
+            "largePrice",
+            "largeQuantityLeft"
+          ],
+          "pos": 12,
+          "type": "tab",
+          "key": "tab-957e8c9f-ea36-49c4-9c0a-e8d4bd7ac7c7"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "artwork",
+      "component_group_uuid": "0f71813d-1913-4488-b06e-b1b1a9138e38",
+      "color": "#395ece",
+      "icon": "block-doc",
+      "component_group_name": "content"
+    },
+    {
+      "name": "blogpost",
+      "display_name": null,
+      "created_at": "2022-07-22T12:15:20.387Z",
+      "updated_at": "2022-07-22T13:14:29.030Z",
+      "id": 2724323,
+      "schema": {
+        "cover": {
+          "type": "asset"
+        },
+        "content": {
+          "type": "richtext"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "blogpost",
+      "component_group_uuid": "0f71813d-1913-4488-b06e-b1b1a9138e38",
+      "color": null,
+      "icon": null,
+      "component_group_name": "content"
+    },
+    {
+      "name": "border",
+      "display_name": null,
+      "created_at": "2022-07-22T12:22:21.788Z",
+      "updated_at": "2022-07-22T12:22:35.296Z",
+      "id": 2724327,
+      "schema": {
+        "elevated": {
+          "type": "boolean"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "border",
+      "component_group_uuid": "bc75f84a-1fe6-43ed-9549-2b16e0a103fe",
+      "color": "#fbce41",
+      "icon": null,
+      "component_group_name": "Atoms"
+    },
+    {
+      "name": "gallery",
+      "display_name": null,
+      "created_at": "2022-07-22T13:46:13.311Z",
+      "updated_at": "2022-07-22T16:37:33.555Z",
+      "id": 2724752,
+      "schema": {
+        "drawings": {
+          "type": "options",
+          "source": "internal_stories",
+          "folder_slug": "drawings/",
+          "filter_content_type": [
+            "artwork"
+          ],
+          "allow_reorder": true,
+          "min_options": "2",
+          "max_options": "20",
+          "use_uuid": true
+        }
+      },
+      "image": null,
+      "preview_field": "drawings",
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [
+        {
+          "id": 1615204,
+          "name": "default",
+          "component_id": 2724752,
+          "image": "",
+          "color": "",
+          "icon": "",
+          "description": ""
+        }
+      ],
+      "preset_id": null,
+      "real_name": "gallery",
+      "component_group_uuid": "bc75f84a-1fe6-43ed-9549-2b16e0a103fe",
+      "color": "#fbce41",
+      "icon": "block-image",
+      "component_group_name": "Atoms"
+    },
+    {
+      "name": "greetings",
+      "display_name": null,
+      "created_at": "2022-07-22T11:42:20.386Z",
+      "updated_at": "2022-07-22T12:02:31.095Z",
+      "id": 2724225,
+      "schema": {
+        "name": {
+          "type": "text",
+          "key": "Name",
+          "pos": 0
+        },
+        "greeting": {
+          "type": "textarea"
+        },
+        "cover": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "greetings",
+      "component_group_uuid": "bc75f84a-1fe6-43ed-9549-2b16e0a103fe",
+      "color": "#fbce41",
+      "icon": null,
+      "component_group_name": "Atoms"
+    },
+    {
+      "name": "page",
+      "display_name": null,
+      "created_at": "2022-07-22T09:16:18.946Z",
+      "updated_at": "2022-07-22T09:16:18.946Z",
+      "id": 2723571,
+      "schema": {
+        "body": {
+          "type": "bloks"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "page",
+      "component_group_uuid": null,
+      "color": null,
+      "icon": null
+    },
+    {
+      "name": "section",
+      "display_name": null,
+      "created_at": "2022-07-22T12:27:56.458Z",
+      "updated_at": "2022-07-22T12:32:36.909Z",
+      "id": 2724333,
+      "schema": {
+        "content": {
+          "type": "bloks"
+        },
+        "elevated": {
+          "type": "boolean"
+        },
+        "borders": {
+          "type": "options",
+          "options": [
+            {
+              "name": "Top",
+              "value": "top"
+            },
+            {
+              "value": "bottom",
+              "name": "Bottom"
+            }
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "section",
+      "component_group_uuid": "bc75f84a-1fe6-43ed-9549-2b16e0a103fe",
+      "color": "#fbce41",
+      "icon": null,
+      "component_group_name": "Atoms"
+    }
+  ]
+}

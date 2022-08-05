@@ -11,7 +11,7 @@ export default function Gallery({ blok }) {
 				return (
 					<DrawingCard
 						blok={drawing}
-						key={drawing._uid}
+						key={drawing.uuid}
 						className={css.gallery_card}
 					/>
 				);

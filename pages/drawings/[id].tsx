@@ -1,23 +1,19 @@
 import Head from "next/head";
 import PageSection from "@components/PageSection";
-import BuySection from "@components/shop/BuySection";
 import css from "./artworks.module.scss";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
 import PageWrapper from "@components/PageWrapper";
-
 import { render } from "storyblok-rich-text-react-renderer";
-
-import {
-	getStoryblokApi,
-	StoryblokComponent,
-	useStoryblokState,
-} from "@storyblok/react";
-import { StoryblokResult } from "storyblok-js-client";
+import { getStoryblokApi, useStoryblokState } from "@storyblok/react";
+import { StoryblokResult, StoryData } from "storyblok-js-client";
 import { TextContainer } from "@components/TextContainer";
 import ArticleCard from "@components/ArticleCard";
 
-export default function Post({ story }) {
+interface IPostProps {
+	story: StoryData;
+}
+export default function Post({ story }: IPostProps) {
 	story = useStoryblokState(story, {
 		resolveRelations: ["article_card.article", "gallery.drawings"],
 	});
@@ -83,7 +79,7 @@ let sbParams = {
 const storyblokApi = getStoryblokApi();
 
 export const getStaticPaths = async () => {
-	let { data } = await storyblokApi.get("cdn/stories", {
+	let { data }: StoryblokResult = await storyblokApi.get("cdn/stories", {
 		starts_with: "blog/",
 		...sbParams,
 	});

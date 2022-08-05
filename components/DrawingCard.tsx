@@ -2,16 +2,20 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import css from "./DrawingCard.module.scss";
-
-import currency from "currency.js";
+import { ArtworkStoryblok } from "@typings/components-schema";
 import { motion } from "framer-motion";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable, StoryData } from "@storyblok/react";
 
-const DrawingCard = ({ blok, className }): JSX.Element => {
+interface IDrawingCardProps {
+	blok: StoryData<ArtworkStoryblok>;
+	className: string;
+}
+
+const DrawingCard = ({ blok, className }: IDrawingCardProps): JSX.Element => {
 	if (!blok) return <div>No block</div>;
 	return (
-		<Link href={`drawings/${blok.slug}`}>
-			<a className={className} {...storyblokEditable(blok)}>
+		<Link href={`drawings/${blok.slug}`} key={blok.content._uid}>
+			<a className={className} {...storyblokEditable(blok.content)}>
 				<motion.div
 					whileHover={{
 						y: -20,
@@ -43,10 +47,7 @@ const DrawingCard = ({ blok, className }): JSX.Element => {
 					)}
 					<div className={css.description}>
 						<p className={css.title}>{blok.name}</p>
-						{/* <p className={css.price}>
-							{currency(minPrice, { precision: 1 }).value} -
-							{currency(maxPrice, { precision: 0 }).value}€
-						</p> */}
+						<p className={css.price}>100 - 250€</p>
 					</div>
 				</motion.div>
 			</a>
