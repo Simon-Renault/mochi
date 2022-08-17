@@ -3,11 +3,23 @@ import { addProductToCart } from "@lib/helper";
 import { Context } from "@lib/shopContext";
 import { useContext } from "react";
 import Router from "next/router";
-import { IVariant } from "@lib/types";
 import PageWrapper from "@components/PageWrapper";
+import css from "./cart.module.scss";
+import { getStoryblokApi, StoryblokResult, StoryData } from "@storyblok/react";
+import { myLoader, RELATIONS } from "@lib/utils";
+import { HomePageStoryblok } from "typings/components-schema";
+import { IVariant } from "@components/shop/BuySection";
+import Image from "next/image";
+import TitleSection from "@components/TitleSection";
+import PageSection from "@components/PageSection";
 
-export default function Blog() {
+interface ICartProps {
+	stories: StoryData<HomePageStoryblok>[];
+}
+export default function Blog({ stories }: ICartProps) {
 	const { cartID, cartItems } = useContext(Context);
+
+	console.log(stories);
 
 	const handleClick = async () => {
 		let data = await addProductToCart(
@@ -21,20 +33,54 @@ export default function Blog() {
 	return (
 		<PageWrapper id="cart">
 			<main>
-				<div>
-					{cartItems.map((item: IVariant) => {
-						return <li key={item.id}>{JSON.stringify(item)}</li>;
-					})}
-				</div>
-				<Button onClick={handleClick}>Checkout</Button>
+				<PageSection className={css.content}>
+					<TitleSection
+						title="Basket"
+						description="All the artworks you intend to buy"
+					/>
+					<ul className={css.list}>
+						{cartItems.map((item: IVariant) => {
+							const drawing = stories.find((story) => {
+								return story.slug === item.slug;
+							});
+							return (
+								<li className={css.item} key={item.name}>
+									<Image
+										loader={myLoader}
+										src={drawing.content.cover?.filename}
+										width={150}
+										height={150}
+										alt="Picture of the author"
+									/>
+									<div>Name : {drawing?.name}</div>
+									<div>Size : {item.name}</div>
+									<div>Price : {item.price}</div>
+								</li>
+							);
+						})}
+					</ul>
+					<Button onClick={handleClick}>Checkout</Button>
+				</PageSection>
 			</main>
 		</PageWrapper>
 	);
 }
 
 export const getStaticProps = async () => {
+	const storyblokApi = getStoryblokApi();
+
+	let { data }: StoryblokResult = await storyblokApi.get(`cdn/stories`, {
+		starts_with: "drawings/",
+		version: "draft",
+		resolve_relations: RELATIONS,
+	});
+
+	let stories: StoryData<HomePageStoryblok>[] = data.stories;
+
 	return {
-		props: {},
+		props: {
+			stories,
+		},
 		revalidate: 1,
 	};
 };

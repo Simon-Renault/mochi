@@ -23,6 +23,7 @@ interface IPostProps {
 
 export default function Post({ artwork }: IPostProps) {
 	if (!artwork) return <div />;
+	const { slug } = artwork;
 
 	artwork = useStoryblokState(artwork, {
 		//@ts-ignore
@@ -40,11 +41,13 @@ export default function Post({ artwork }: IPostProps) {
 			name: "Small",
 			price: artwork.content.smallPrice,
 			isSelling: true,
+			slug,
 		},
 		{
 			name: "Medium",
 			price: artwork.content.mediumPrice,
 			isSelling: true,
+			slug,
 		},
 		{
 			name: "Large",
@@ -52,6 +55,7 @@ export default function Post({ artwork }: IPostProps) {
 			isSelling: artwork.content.largeQuantityLeft
 				? artwork.content.largeQuantityLeft > 0
 				: false,
+			slug,
 		},
 	];
 

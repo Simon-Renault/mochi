@@ -24,6 +24,10 @@
 	}
 }
 
+.number_indicator {
+	font-style: italic;
+	color: var(--grey-1);
+}
 .nav {
 	gap: 20px;
 	display: none;

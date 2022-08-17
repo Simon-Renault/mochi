@@ -33,6 +33,7 @@ export interface IVariant {
 	price?: number;
 	quantityLeft?: string;
 	isSelling?: boolean;
+	slug: string;
 }
 
 const Divider = (props: IDividerProps) => {

@@ -19,14 +19,21 @@ interface IBuyPrintModalProps {
 }
 
 const BuyPrintModal = (props: IBuyPrintModalProps) => {
-	const { onClose, prints } = props;
+	const { onClose, prints, artwork } = props;
 	const [selectedVariant, setSelectedVariant] = useState<IVariant>(prints[0]);
 	const handleCloseClick = () => onClose();
 
 	const { addToCart, cartItems } = useContext(Context);
 
 	const handleAddToCart = async () => {
-		addToCart([...cartItems, selectedVariant]);
+		addToCart([
+			...cartItems,
+			{
+				drawingSlug: artwork.full_slug,
+				drawingID: artwork.full_slug,
+				...selectedVariant,
+			},
+		]);
 	};
 
 	return (

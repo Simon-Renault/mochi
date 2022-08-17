@@ -33,8 +33,12 @@ export default function Header() {
 					<Link href="/cart">
 						<a className={css.shop}>
 							<ShoppingBag size={16} />
-							<span>Basket</span>
-							{true && <span>- {cartItems.length}</span>}
+							<span>Cart</span>
+							{true && (
+								<span className={css.number_indicator}>
+									- {cartItems.length}
+								</span>
+							)}
 						</a>
 					</Link>
 				</nav>
