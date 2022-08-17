@@ -5,17 +5,22 @@ import css from "./DrawingCard.module.scss";
 import { IDrawing } from "@lib/types";
 import currency from "currency.js";
 import { motion } from "framer-motion";
+import { StoryData } from "@storyblok/react";
+import { ArtworkStoryblok } from "typings/components-schema";
 
 interface IDrawingCardProps {
-	drawing: IDrawing;
+	drawing: StoryData<ArtworkStoryblok>;
 	className?: string;
 }
 
-const DrawingCard = (props: IDrawingCardProps): JSX.Element => {
-	const { title, path, cover, minPrice, maxPrice } = props.drawing;
+const DrawingCard = ({
+	drawing,
+	className,
+}: IDrawingCardProps): JSX.Element => {
+	const { cover, largePrice, smallPrice } = drawing.content;
 	return (
-		<Link href={path}>
-			<a className={props.className}>
+		<Link href={drawing.full_slug}>
+			<a className={className}>
 				<motion.div
 					whileHover={{
 						y: -20,
@@ -34,21 +39,28 @@ const DrawingCard = (props: IDrawingCardProps): JSX.Element => {
 					className={css.drawingCard}
 				>
 					<div className={css.imageContainer}>
-						<Image
-							className={css.image}
-							src={cover.src}
-							alt={cover.altText}
-							width={cover.width}
-							height={cover.height}
-							quality={10}
-							unoptimized={true}
-						/>
+						{cover?.filename && (
+							<Image
+								className={css.image}
+								src={cover?.filename}
+								alt={cover?.alt}
+								width={100}
+								height={100}
+								quality={10}
+								unoptimized={true}
+							/>
+						)}
 					</div>
 					<div className={css.description}>
-						<p className={css.title}>{title}</p>
+						<p className={css.title}>{drawing.name}</p>
 						<p className={css.price}>
-							{currency(minPrice, { precision: 1 }).value} -
-							{currency(maxPrice, { precision: 0 }).value}€
+							{largePrice &&
+								currency(largePrice, { precision: 1 })
+									.value}{" "}
+							-
+							{smallPrice &&
+								currency(smallPrice, { precision: 0 }).value}
+							€
 						</p>
 					</div>
 				</motion.div>

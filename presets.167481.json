@@ -1,0 +1,29 @@
+{
+  "presets": [
+    {
+      "id": 1615204,
+      "name": "default",
+      "preset": {
+        "_uid": "cf4f09ba-3eee-4465-8324-f228f1f6d161",
+        "drawings": [
+          "c3d05b74-debc-42de-bd0d-312730552138",
+          "2a6581b4-7dad-43d5-b593-075e70ed917a",
+          "011c2338-a942-4d5c-a8cc-fc0724b5ce7b",
+          "5a82f670-b087-4175-847b-36b3d66b260a",
+          "5c140fba-4419-4e2c-bee3-e5fcbad9de35",
+          "87c78961-5aa1-450d-a5bb-473175ca645f",
+          "74c11a67-4cdc-449e-93cd-e5f582db80b4"
+        ],
+        "component": "gallery"
+      },
+      "component_id": 2724752,
+      "space_id": 167481,
+      "created_at": "2022-07-22T17:05:17.710Z",
+      "updated_at": "2022-07-22T17:05:17.710Z",
+      "image": "",
+      "color": "",
+      "icon": "",
+      "description": ""
+    }
+  ]
+}

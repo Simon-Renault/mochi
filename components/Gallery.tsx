@@ -1,11 +1,13 @@
 import { IDrawing } from "@lib/types";
+import { StoryData } from "@storyblok/react";
 import { ArrowRight } from "react-feather";
+import { ArtworkStoryblok } from "typings/components-schema";
 import Button from "./Button";
 import DrawingCard from "./DrawingCard";
 import css from "./Gallery.module.scss";
 
 interface IGalleryProps {
-	drawings: IDrawing[];
+	drawings: StoryData<ArtworkStoryblok>[];
 }
 
 export default function Gallery({ drawings }: IGalleryProps) {
