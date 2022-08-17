@@ -7,24 +7,9 @@ import Head from "next/head";
 import { ContextProvider } from "@lib/shopContext";
 import { storyblokInit, apiPlugin } from "@storyblok/react";
 
-const testResolver = [
-	"featured_drawings.drawings",
-	"featured_drawings.artworks",
-	"featuredDrawings.drawings",
-	"featuredDrawings.artworks",
-	"featuredDrawings",
-	"drawings",
-	"Drawings",
-	"artworks",
-	"Artworks",
-	"home.drawings",
-	"featuredArticles.article",
-];
-
 storyblokInit({
 	accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
 	use: [apiPlugin],
-	resolveRelations: testResolver,
 });
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
