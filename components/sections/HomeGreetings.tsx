@@ -25,15 +25,18 @@ export default function HomeGreetings({
 				</p>
 			</PageSection>
 
-			<div className={css.image_container}>
-				<Image
-					loader={myLoader}
-					src={cover}
-					alt="Picture of the author"
-					layout="fill"
-					quality={1}
-				/>
-			</div>
+			{cover && (
+				<div className={css.image_container}>
+					<Image
+						loader={myLoader}
+						src={cover}
+						alt="Picture of the author"
+						layout="fill"
+						objectFit="cover"
+						quality={1}
+					/>
+				</div>
+			)}
 
 			<PageSection className={css.divider_container}>
 				<div className={css.divider}></div>
