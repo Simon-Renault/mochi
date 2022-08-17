@@ -14,7 +14,7 @@ interface IBlogProps {
 
 export default function Blog({ posts }: IBlogProps) {
 	return (
-		<PageWrapper key="blog">
+		<PageWrapper id="blog">
 			<main>
 				<PageSection>
 					<TitleSection

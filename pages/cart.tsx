@@ -19,7 +19,7 @@ export default function Blog() {
 	};
 
 	return (
-		<PageWrapper key="cart">
+		<PageWrapper id="cart">
 			<main>
 				<div>
 					{cartItems.map((item: IVariant) => {

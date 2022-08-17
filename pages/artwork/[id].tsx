@@ -20,7 +20,7 @@ export default function Post({ drawing, variants }: IPostProps) {
 	if (!drawing) return <div />;
 	const { original, prints } = variants;
 	return (
-		<PageWrapper key="artwork">
+		<PageWrapper id="artwork">
 			<Head>
 				<title>{drawing.title}</title>
 				<link rel="icon" href="/favicon.ico" />

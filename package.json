@@ -5,12 +5,15 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "https": "node server.js",
+        "types": "storyblok pull-components --space=167481"
     },
     "dependencies": {
         "@apollo/client": "^3.6.9",
         "@notionhq/client": "^0.4.4",
         "@plaiceholder/next": "^2.4.0",
+        "@storyblok/react": "^1.1.5",
         "@types/body-scroll-lock": "^3.1.0",
         "@types/react-dom": "^18.0.6",
         "@types/shopify-buy": "^2.10.10",
@@ -34,6 +37,8 @@
         "sass": "^1.53.0",
         "sharp": "^0.30.7",
         "shopify-buy": "^2.16.1",
+        "storyblok": "^3.10.5",
+        "storyblok-generate-ts": "^1.6.0",
         "yarn": "^1.22.19"
     },
     "devDependencies": {

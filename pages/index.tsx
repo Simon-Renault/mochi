@@ -6,23 +6,38 @@ import Button from "@components/Button";
 import HomeGreetings from "@components/sections/HomeGreetings";
 import AboutMe from "@components/sections/AboutMe";
 import css from "./index.module.scss";
-import { getDatabase } from "../lib/notion";
 import { IPost, IDrawing, IImage } from "@lib/types";
 import { ArrowRight } from "react-feather";
-import { blogPostsDatabaseId } from "@lib/config";
-import { formatPosts } from "@lib/utils";
 import { getProducts } from "@lib/shopifyClient";
 import { Border } from "@components/Border";
 import PageWrapper from "@components/PageWrapper";
+import {
+	getStoryblokApi,
+	StoryblokComponent,
+	useStoryblokState,
+} from "@storyblok/react";
+import { StoryblokResult } from "storyblok-js-client";
 
 interface IHomeProps {
+	story: any;
 	posts: IPost[];
 	drawings: IDrawing[];
 }
 
-export default function Home({ posts, drawings }: IHomeProps) {
+export default function Home({ drawings, story }: IHomeProps) {
+	story = useStoryblokState(story, {
+		resolveRelations: [
+			"article_card.article",
+			"gallery.drawings",
+			"featured_drawings.drawings",
+			"drawings",
+			"home.drawings",
+			"featuredArticles.article",
+		],
+	});
+	console.log(story);
 	return (
-		<PageWrapper key="index">
+		<PageWrapper id="index">
 			<main className={css.container}>
 				<HomeGreetings />
 				<PageSection className={css.section_artworks}>
@@ -51,11 +66,11 @@ export default function Home({ posts, drawings }: IHomeProps) {
 						</div>
 
 						<div className={css.list}>
-							{posts.map((post) => {
+							{/* {posts.map((post) => {
 								return (
 									<ArticleCard post={post} key={post.id} />
 								);
-							})}
+							})} */}
 						</div>
 						<Button
 							rounded
@@ -72,15 +87,28 @@ export default function Home({ posts, drawings }: IHomeProps) {
 }
 
 export const getStaticProps = async () => {
-	const maxPost = 3;
+	//===Storyblok===//
+	let slug = "home";
 
-	// Potentilaly create a generic function to do that
-	const blogPostsDatabase = (await getDatabase(blogPostsDatabaseId)).slice(
-		0,
-		maxPost
+	// load the draft version
+	let sbParams = {
+		version: "draft", // or 'published'
+		resolve_relations: [
+			"article_card.article",
+			"gallery.drawings",
+			"featured_drawings.drawings",
+			"featuredArticles.article",
+		],
+	};
+
+	const storyblokApi = getStoryblokApi();
+
+	let { data }: StoryblokResult = await storyblokApi.get(
+		`cdn/stories/${slug}`,
+		sbParams
 	);
 
-	const posts = await Promise.all(blogPostsDatabase.map(formatPosts));
+	//===Shopify===//
 	const products = await getProducts();
 
 	const getImage = ({ node }: any): IImage => {
@@ -111,8 +139,8 @@ export const getStaticProps = async () => {
 
 	return {
 		props: {
+			story: data ? data.story : false,
 			drawings,
-			posts,
 			products,
 		},
 		revalidate: 1,
