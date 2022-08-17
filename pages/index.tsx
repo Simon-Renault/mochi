@@ -17,15 +17,15 @@ import {
 } from "@storyblok/react";
 import { StoryblokResult } from "storyblok-js-client";
 import {
-	ArtworkStoryblok,
 	BlogpostStoryblok,
 	HomePageStoryblok,
+	PageStoryblok,
 } from "typings/components-schema";
 
 const RELATIONS = ["page.featuredDrawings", "page.featuredArticles"];
 
 interface IHomeProps {
-	story: StoryData<HomePageStoryblok>;
+	story: StoryData<PageStoryblok>;
 }
 
 export default function Home({ story }: IHomeProps) {
@@ -41,53 +41,61 @@ export default function Home({ story }: IHomeProps) {
 				className={css.container}
 				{...storyblokEditable(story.content)}
 			>
-				<HomeGreetings />
-				<PageSection className={css.section_artworks}>
-					<TitleSection
-						title="Featured work"
-						description="A collection of my best work, carefuly curated and kept up to date by myself"
-					/>
-					<Gallery drawings={story.content.featuredDrawings} />
-				</PageSection>
+				<HomeGreetings
+					name={story.content.name || "Simon"}
+					greetings={story.content.Greetings}
+					cover={story.content.Cover?.filename}
+				/>
+				{story.content.featuredDrawings && (
+					<PageSection className={css.section_artworks}>
+						<TitleSection
+							title="Featured work"
+							description="A collection of my best work, carefuly curated and kept up to date by myself"
+						/>
+						<Gallery drawings={story.content.featuredDrawings} />
+					</PageSection>
+				)}
 				<Border />
 				<PageSection elevated={true} className={css.about}>
 					<AboutMe />
 				</PageSection>
 				<Border isWhite />
-				<PageSection>
-					<div className={css.columns}>
-						<div>
-							<TitleSection
-								title="Articles"
-								description="Sometimes I let my mind wander and decide to write
+				{story.content.featuredArticles && (
+					<PageSection>
+						<div className={css.columns}>
+							<div>
+								<TitleSection
+									title="Articles"
+									description="Sometimes I let my mind wander and decide to write
 	about various topics."
-							/>
-							<Button rounded className={css.action}>
+								/>
+								<Button rounded className={css.action}>
+									Explore all <ArrowRight size={16} />
+								</Button>
+							</div>
+
+							<div className={css.list}>
+								{story.content.featuredArticles.map(
+									(post: StoryData<BlogpostStoryblok>) => {
+										return (
+											<ArticleCard
+												post={post}
+												key={post.id}
+											/>
+										);
+									}
+								)}
+							</div>
+							<Button
+								rounded
+								href="/blog"
+								className={css.mobile_action}
+							>
 								Explore all <ArrowRight size={16} />
 							</Button>
 						</div>
-
-						<div className={css.list}>
-							{story.content.featuredArticles.map(
-								(post: StoryData<BlogpostStoryblok>) => {
-									return (
-										<ArticleCard
-											post={post}
-											key={post.id}
-										/>
-									);
-								}
-							)}
-						</div>
-						<Button
-							rounded
-							href="/blog"
-							className={css.mobile_action}
-						>
-							Explore all <ArrowRight size={16} />
-						</Button>
-					</div>
-				</PageSection>
+					</PageSection>
+				)}
 			</main>
 		</PageWrapper>
 	);

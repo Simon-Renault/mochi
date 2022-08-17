@@ -6,6 +6,7 @@ import currency from "currency.js";
 import { motion } from "framer-motion";
 import { storyblokEditable, StoryData } from "@storyblok/react";
 import { ArtworkStoryblok } from "typings/components-schema";
+import { myLoader } from "@lib/utils";
 
 interface IDrawingCardProps {
 	drawing: StoryData<ArtworkStoryblok>;
@@ -16,7 +17,9 @@ const DrawingCard = ({
 	drawing,
 	className,
 }: IDrawingCardProps): JSX.Element => {
+	if (!drawing || !drawing.content) return <div>No drawing</div>;
 	const { cover, largePrice, smallPrice } = drawing.content;
+
 	return (
 		<Link href={drawing.full_slug}>
 			<a className={className} {...storyblokEditable(drawing.content)}>
@@ -40,13 +43,13 @@ const DrawingCard = ({
 					<div className={css.imageContainer}>
 						{cover?.filename && (
 							<Image
+								loader={myLoader}
 								className={css.image}
 								src={cover?.filename}
 								alt={cover?.alt}
 								width={600}
 								height={800}
 								quality={10}
-								unoptimized={true}
 							/>
 						)}
 					</div>

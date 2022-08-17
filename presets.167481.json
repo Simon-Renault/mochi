@@ -24,6 +24,50 @@
       "color": "",
       "icon": "",
       "description": ""
+    },
+    {
+      "id": 1646696,
+      "name": "Default",
+      "preset": {
+        "_uid": "b8b4c292-30d3-4eb2-a0ce-383a2f4ddf49",
+        "text": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "Cover": "",
+        "Price": "",
+        "cover": {
+          "id": 5395133,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "filename": "https://a.storyblok.com/f/167481/1980x2800/21a496565a/artwork_1.png",
+          "copyright": "",
+          "fieldtype": "asset",
+          "is_external_url": false
+        },
+        "Quantity": "",
+        "component": "artwork",
+        "largePrice": "150",
+        "smallPrice": "30",
+        "mediumPrice": "80",
+        "originalPrice": "1150",
+        "isOriginalForSale": true,
+        "largeQuantityLeft": "10"
+      },
+      "component_id": 2724324,
+      "space_id": 167481,
+      "created_at": "2022-08-17T12:10:43.172Z",
+      "updated_at": "2022-08-17T12:10:43.172Z",
+      "image": "",
+      "color": "#fbce41",
+      "icon": "",
+      "description": ""
     }
   ]
 }
