@@ -7,10 +7,9 @@ import { ArtworkStoryblok, BlogpostStoryblok } from "typings/components-schema";
 import { StoryData } from "@storyblok/react";
 
 interface IArticleCardProps {
-	post: StoryData<ArtworkStoryblok>;
+	post: StoryData<BlogpostStoryblok>;
 }
 const ArticleCard = (props: IArticleCardProps): JSX.Element => {
-	console.log(props.post);
 	return (
 		<Link href={props.post.full_slug}>
 			<a>

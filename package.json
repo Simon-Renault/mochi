@@ -39,6 +39,7 @@
         "shopify-buy": "^2.16.1",
         "storyblok": "^3.10.5",
         "storyblok-generate-ts": "^1.6.0",
+        "storyblok-rich-text-react-renderer": "^2.6.0",
         "yarn": "^1.22.19"
     },
     "devDependencies": {

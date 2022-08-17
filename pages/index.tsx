@@ -13,9 +13,14 @@ import {
 	getStoryblokApi,
 	StoryData,
 	useStoryblokState,
+	storyblokEditable,
 } from "@storyblok/react";
 import { StoryblokResult } from "storyblok-js-client";
-import { ArtworkStoryblok, HomePageStoryblok } from "typings/components-schema";
+import {
+	ArtworkStoryblok,
+	BlogpostStoryblok,
+	HomePageStoryblok,
+} from "typings/components-schema";
 
 const RELATIONS = ["page.featuredDrawings", "page.featuredArticles"];
 
@@ -30,11 +35,12 @@ export default function Home({ story }: IHomeProps) {
 		RELATIONS,
 	});
 
-	console.log(story);
-
 	return (
 		<PageWrapper id="index">
-			<main className={css.container}>
+			<main
+				className={css.container}
+				{...storyblokEditable(story.content)}
+			>
 				<HomeGreetings />
 				<PageSection className={css.section_artworks}>
 					<TitleSection
@@ -62,8 +68,8 @@ export default function Home({ story }: IHomeProps) {
 						</div>
 
 						<div className={css.list}>
-							{story.content.featuredDrawings.map(
-								(post: StoryData<ArtworkStoryblok>) => {
+							{story.content.featuredArticles.map(
+								(post: StoryData<BlogpostStoryblok>) => {
 									return (
 										<ArticleCard
 											post={post}
@@ -95,9 +101,11 @@ export const getStaticProps = async () => {
 		resolve_relations: RELATIONS,
 	});
 
+	let story: StoryData<HomePageStoryblok> = data.story;
+
 	return {
 		props: {
-			story: data ? data.story : false,
+			story,
 		},
 		revalidate: 1,
 	};

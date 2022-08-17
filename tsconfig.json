@@ -28,8 +28,8 @@
         "**/*.tsx",
         "components/header.jsx",
         "components/PageSection.jsx",
-        "pages/artwork/[id].tsx",
-        "pages/article/[id].jsx",
+        "pages/drawings/[id].tsx",
+        "pages/articles/[id].jsx",
         "lib/shopifyClient.js",
         "lib/shopContext.jsx"
     ],

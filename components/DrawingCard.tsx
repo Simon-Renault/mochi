@@ -2,10 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import css from "./DrawingCard.module.scss";
-import { IDrawing } from "@lib/types";
 import currency from "currency.js";
 import { motion } from "framer-motion";
-import { StoryData } from "@storyblok/react";
+import { storyblokEditable, StoryData } from "@storyblok/react";
 import { ArtworkStoryblok } from "typings/components-schema";
 
 interface IDrawingCardProps {
@@ -20,7 +19,7 @@ const DrawingCard = ({
 	const { cover, largePrice, smallPrice } = drawing.content;
 	return (
 		<Link href={drawing.full_slug}>
-			<a className={className}>
+			<a className={className} {...storyblokEditable(drawing.content)}>
 				<motion.div
 					whileHover={{
 						y: -20,
@@ -44,8 +43,8 @@ const DrawingCard = ({
 								className={css.image}
 								src={cover?.filename}
 								alt={cover?.alt}
-								width={100}
-								height={100}
+								width={600}
+								height={800}
 								quality={10}
 								unoptimized={true}
 							/>
