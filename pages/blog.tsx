@@ -1,15 +1,14 @@
 import ArticleCard from "@components/ArticleCard";
 import PageSection from "@components/PageSection";
 import TitleSection from "@components/TitleSection";
-import { IPost } from "@lib/types";
-import { getDatabase } from "../lib/notion";
 import css from "./blog.module.scss";
-import { formatPosts } from "@lib/utils";
-import { blogPostsDatabaseId } from "@lib/config";
 import PageWrapper from "@components/PageWrapper";
+import { getStoryblokApi, StoryblokResult, StoryData } from "@storyblok/react";
+import { BlogpostStoryblok } from "typings/components-schema";
+import { RELATIONS } from "@lib/utils";
 
 interface IBlogProps {
-	posts: IPost[];
+	posts: StoryData<BlogpostStoryblok>[];
 }
 
 export default function Blog({ posts }: IBlogProps) {
@@ -35,14 +34,19 @@ export default function Blog({ posts }: IBlogProps) {
 }
 
 export const getStaticProps = async () => {
-	const blogPostsDatabase = await getDatabase(blogPostsDatabaseId);
+	const storyblokApi = getStoryblokApi();
 
-	// Potentilaly create a generic function to do that
-	const posts = await Promise.all(blogPostsDatabase.map(formatPosts));
+	let { data }: StoryblokResult = await storyblokApi.get(`cdn/stories`, {
+		starts_with: "blog/",
+		version: "draft",
+		resolve_relations: RELATIONS,
+	});
+
+	let stories: StoryData<BlogpostStoryblok>[] = data.stories;
 
 	return {
 		props: {
-			posts,
+			drawings: stories,
 		},
 		revalidate: 1,
 	};

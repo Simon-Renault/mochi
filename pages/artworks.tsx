@@ -31,16 +31,17 @@ export default function Blog({ drawings }: IArtworkProps) {
 export const getStaticProps = async () => {
 	const storyblokApi = getStoryblokApi();
 
-	let { data }: StoryblokResult = await storyblokApi.get(`cdn/stories/home`, {
+	let { data }: StoryblokResult = await storyblokApi.get(`cdn/stories`, {
+		starts_with: "drawings/",
 		version: "draft",
 		resolve_relations: RELATIONS,
 	});
 
-	let story: StoryData<HomePageStoryblok> = data.story;
+	let stories: StoryData<ArtworkStoryblok>[] = data.stories;
 
 	return {
 		props: {
-			story,
+			drawings: stories,
 		},
 		revalidate: 1,
 	};
