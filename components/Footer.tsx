@@ -7,6 +7,7 @@ import Button from "./Button";
 export default function Footer() {
 	return (
 		<>
+			<Border elevated position="top" />
 			<PageSection elevated={true} className={css.section}>
 				<footer className={css.footer}>
 					<div>

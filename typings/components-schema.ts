@@ -23,6 +23,12 @@ export interface AssetStoryblok {
 }
 
 export interface ArtworkStoryblok {
+  isOriginalForSale: boolean;
+  originalPrice?: number;
+  largeQuantityLeft?: number;
+  largePrice?: number;
+  mediumPrice?: number;
+  smallPrice?: number;
   cover?: AssetStoryblok;
   text?: any;
   _uid: string;
@@ -63,8 +69,23 @@ export interface GreetingsStoryblok {
   [k: string]: any;
 }
 
+
+export interface HomePageStoryblok {
+  body?: AssetStoryblok;
+  _uid: string;
+  component: "homePage";
+  [k: string]: any;
+}
+
+
+
 export interface PageStoryblok {
-  body?: any[];
+  Greetings?: string;
+  Cover?: AssetStoryblok;
+  featuredDrawings?: any[];
+  featuredArticles?: any[];
+  text?: string;
+  image?: AssetStoryblok;
   _uid: string;
   component: "page";
   uuid?: string;
@@ -75,6 +96,8 @@ export interface SectionStoryblok {
   content?: any[];
   elevated?: boolean;
   borders?: ("top" | "bottom")[];
+  title?: string;
+  description?: string;
   _uid: string;
   component: "section";
   [k: string]: any;

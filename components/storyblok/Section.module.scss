@@ -11,4 +11,11 @@
 		width: var(--standard-container-width);
 		max-width: var(--standard-container-max-width);
 	}
+
+	&.border_top {
+		padding-top: 0px;
+	}
+	&.border_bottom {
+		padding-bottom: 60px;
+	}
 }

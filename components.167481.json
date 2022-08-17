@@ -59,13 +59,14 @@
       "name": "artwork",
       "display_name": null,
       "created_at": "2022-07-22T12:15:38.860Z",
-      "updated_at": "2022-08-05T12:27:40.180Z",
+      "updated_at": "2022-08-05T12:30:31.237Z",
       "id": 2724324,
       "schema": {
         "isOriginalForSale": {
           "type": "boolean",
           "key": "isOriginalForSale",
-          "pos": 0
+          "pos": 0,
+          "required": true
         },
         "originalPrice": {
           "type": "number",
@@ -84,7 +85,7 @@
         },
         "largeQuantityLeft": {
           "type": "number",
-          "default_value": 10,
+          "default_value": 20,
           "min_value": 0,
           "max_value": 10,
           "steps": 1,
@@ -94,7 +95,8 @@
         "largePrice": {
           "type": "number",
           "key": "LargePrice",
-          "pos": 4
+          "pos": 4,
+          "default_value": 200
         },
         "medium": {
           "type": "section",
@@ -109,7 +111,8 @@
         "mediumPrice": {
           "type": "number",
           "key": "mediumPrice",
-          "pos": 6
+          "pos": 6,
+          "default_value": 120
         },
         "small": {
           "type": "section",
@@ -122,7 +125,8 @@
         "smallPrice": {
           "type": "number",
           "key": "smallPrice",
-          "pos": 8
+          "pos": 8,
+          "default_value": 50
         },
         "cover": {
           "type": "asset",
@@ -183,7 +187,7 @@
       "name": "blogpost",
       "display_name": null,
       "created_at": "2022-07-22T12:15:20.387Z",
-      "updated_at": "2022-07-22T13:14:29.030Z",
+      "updated_at": "2022-08-16T09:23:12.103Z",
       "id": 2724323,
       "schema": {
         "cover": {
@@ -202,8 +206,8 @@
       "preset_id": null,
       "real_name": "blogpost",
       "component_group_uuid": "0f71813d-1913-4488-b06e-b1b1a9138e38",
-      "color": null,
-      "icon": null,
+      "color": "#395ece",
+      "icon": "block-doc",
       "component_group_name": "content"
     },
     {
@@ -309,14 +313,18 @@
       "component_group_name": "Atoms"
     },
     {
-      "name": "page",
+      "name": "homePage",
       "display_name": null,
       "created_at": "2022-07-22T09:16:18.946Z",
-      "updated_at": "2022-07-22T09:16:18.946Z",
+      "updated_at": "2022-08-16T09:23:57.460Z",
       "id": 2723571,
       "schema": {
         "body": {
-          "type": "bloks"
+          "type": "asset",
+          "display_name": "Cover",
+          "filetypes": [
+            "images"
+          ]
         }
       },
       "image": null,
@@ -324,6 +332,68 @@
       "is_root": true,
       "preview_tmpl": null,
       "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "homePage",
+      "component_group_uuid": "0f71813d-1913-4488-b06e-b1b1a9138e38",
+      "color": "#395ece",
+      "icon": "block-doc",
+      "component_group_name": "content"
+    },
+    {
+      "name": "page",
+      "display_name": null,
+      "created_at": "2022-08-16T09:34:08.776Z",
+      "updated_at": "2022-08-16T09:38:49.283Z",
+      "id": 2816502,
+      "schema": {
+        "Greetings": {
+          "type": "textarea",
+          "pos": 0
+        },
+        "tab-93ca9261-6886-462d-96f3-b1d03c24168c": {
+          "display_name": "About",
+          "keys": [
+            "text",
+            "image"
+          ],
+          "pos": 0,
+          "type": "tab"
+        },
+        "Cover": {
+          "type": "asset",
+          "pos": 1
+        },
+        "featuredDrawings": {
+          "type": "options",
+          "pos": 2,
+          "source": "internal_stories",
+          "filter_content_type": [
+            "artwork"
+          ]
+        },
+        "featuredArticles": {
+          "type": "options",
+          "source": "internal_stories",
+          "filter_content_type": [
+            "blogpost"
+          ],
+          "min_options": "1",
+          "max_options": "3",
+          "pos": 3
+        },
+        "text": {
+          "type": "textarea"
+        },
+        "image": {
+          "type": "asset"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
       "real_name": "page",
@@ -335,14 +405,19 @@
       "name": "section",
       "display_name": null,
       "created_at": "2022-07-22T12:27:56.458Z",
-      "updated_at": "2022-07-22T12:32:36.909Z",
+      "updated_at": "2022-08-16T10:09:59.629Z",
       "id": 2724333,
       "schema": {
         "content": {
-          "type": "bloks"
+          "type": "bloks",
+          "key": "content",
+          "pos": 0,
+          "maximum": 1
         },
         "elevated": {
-          "type": "boolean"
+          "type": "boolean",
+          "key": "elevated",
+          "pos": 1
         },
         "borders": {
           "type": "options",
@@ -355,7 +430,19 @@
               "value": "bottom",
               "name": "Bottom"
             }
-          ]
+          ],
+          "key": "borders",
+          "pos": 2
+        },
+        "title": {
+          "type": "text",
+          "key": "Title",
+          "pos": 3
+        },
+        "description": {
+          "type": "textarea",
+          "key": "description",
+          "pos": 4
         }
       },
       "image": null,
