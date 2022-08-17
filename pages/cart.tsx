@@ -19,8 +19,6 @@ interface ICartProps {
 export default function Blog({ stories }: ICartProps) {
 	const { cartID, cartItems } = useContext(Context);
 
-	console.log(stories);
-
 	const handleClick = async () => {
 		let data = await addProductToCart(
 			cartItems.map((x: any) => {
@@ -43,15 +41,20 @@ export default function Blog({ stories }: ICartProps) {
 							const drawing = stories.find((story) => {
 								return story.slug === item.slug;
 							});
+							if (!drawing) return;
 							return (
 								<li className={css.item} key={item.name}>
-									<Image
-										loader={myLoader}
-										src={drawing.content.cover?.filename}
-										width={150}
-										height={150}
-										alt="Picture of the author"
-									/>
+									{drawing.content.cover && (
+										<Image
+											loader={myLoader}
+											src={
+												drawing.content.cover?.filename
+											}
+											width={150}
+											height={150}
+											alt="Picture of the author"
+										/>
+									)}
 									<div>Name : {drawing?.name}</div>
 									<div>Size : {item.name}</div>
 									<div>Price : {item.price}</div>

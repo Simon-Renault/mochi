@@ -11,6 +11,7 @@ interface IArtworkProps {
 }
 
 export default function Blog({ drawings }: IArtworkProps) {
+	if (!drawings) return <div></div>;
 	return (
 		<PageWrapper id="artworks">
 			<main>

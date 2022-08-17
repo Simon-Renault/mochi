@@ -12,6 +12,7 @@ interface IBlogProps {
 }
 
 export default function Blog({ posts }: IBlogProps) {
+	if (!posts) return <div></div>;
 	return (
 		<PageWrapper id="blog">
 			<main>
@@ -46,7 +47,7 @@ export const getStaticProps = async () => {
 
 	return {
 		props: {
-			drawings: stories,
+			posts: stories,
 		},
 		revalidate: 1,
 	};
