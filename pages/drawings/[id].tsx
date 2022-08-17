@@ -34,6 +34,7 @@ export default function Post({ artwork }: IPostProps) {
 		name: "Original",
 		price: artwork.content.originalPrice,
 		isSelling: artwork.content.isOriginalForSale,
+		slug,
 	};
 
 	const prints: IVariant[] = [
