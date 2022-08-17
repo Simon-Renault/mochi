@@ -1,4 +1,3 @@
-import { IDrawing } from "@lib/types";
 import { StoryData } from "@storyblok/react";
 import { ArrowRight } from "react-feather";
 import { ArtworkStoryblok } from "typings/components-schema";

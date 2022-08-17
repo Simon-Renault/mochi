@@ -1,14 +1,13 @@
 import PageSection from "@components/PageSection";
 import TitleSection from "@components/TitleSection";
-import { IDrawing } from "@lib/types";
-import { getDatabase } from "../lib/notion";
 import Gallery from "@components/Gallery";
-import { drawingDatabaseId } from "@lib/config";
-import { formatDrawing } from "@lib/utils";
 import PageWrapper from "@components/PageWrapper";
+import { getStoryblokApi, StoryblokResult, StoryData } from "@storyblok/react";
+import { ArtworkStoryblok, HomePageStoryblok } from "typings/components-schema";
+import { RELATIONS } from "@lib/utils";
 
 interface IArtworkProps {
-	drawings: IDrawing[];
+	drawings: StoryData<ArtworkStoryblok>[];
 }
 
 export default function Blog({ drawings }: IArtworkProps) {
@@ -30,14 +29,18 @@ export default function Blog({ drawings }: IArtworkProps) {
 }
 
 export const getStaticProps = async () => {
-	const drawingDatabase = await getDatabase(drawingDatabaseId);
+	const storyblokApi = getStoryblokApi();
 
-	// Potentilaly create a generic function to do that
-	const drawings = await Promise.all(drawingDatabase.map(formatDrawing));
+	let { data }: StoryblokResult = await storyblokApi.get(`cdn/stories/home`, {
+		version: "draft",
+		resolve_relations: RELATIONS,
+	});
+
+	let story: StoryData<HomePageStoryblok> = data.story;
 
 	return {
 		props: {
-			drawings,
+			story,
 		},
 		revalidate: 1,
 	};

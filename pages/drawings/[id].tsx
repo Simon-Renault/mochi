@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PageSection from "@components/PageSection";
-import BuySection from "@components/shop/BuySection";
+import BuySection, { IVariant } from "@components/shop/BuySection";
 import css from "./artworks.module.scss";
 import { GetStaticProps } from "next/types";
 import Image from "next/image";
@@ -14,14 +14,13 @@ import {
 	useStoryblokState,
 } from "@storyblok/react";
 import { ArtworkStoryblok, HomePageStoryblok } from "typings/components-schema";
-import { NextParsedUrlQuery } from "next/dist/server/request-meta";
 import { render } from "storyblok-rich-text-react-renderer";
-
-const RELATIONS = ["page.featuredDrawings"];
+import { RELATIONS } from "@lib/utils";
 
 interface IPostProps {
 	artwork: StoryData<ArtworkStoryblok>;
 }
+
 export default function Post({ artwork }: IPostProps) {
 	if (!artwork) return <div />;
 
@@ -29,6 +28,32 @@ export default function Post({ artwork }: IPostProps) {
 		//@ts-ignore
 		RELATIONS,
 	});
+
+	const original: IVariant = {
+		name: "Original",
+		price: artwork.content.originalPrice,
+		isSelling: artwork.content.isOriginalForSale,
+	};
+
+	const prints: IVariant[] = [
+		{
+			name: "Small",
+			price: artwork.content.smallPrice,
+			isSelling: true,
+		},
+		{
+			name: "Medium",
+			price: artwork.content.mediumPrice,
+			isSelling: true,
+		},
+		{
+			name: "Large",
+			price: artwork.content.largePrice,
+			isSelling: artwork.content.largeQuantityLeft
+				? artwork.content.largeQuantityLeft > 0
+				: false,
+		},
+	];
 
 	return (
 		<PageWrapper id="artwork">
@@ -45,18 +70,20 @@ export default function Post({ artwork }: IPostProps) {
 							<p className={css.date}>2020</p>
 						</div>
 					</div>
-					<div className={css.banner}>
-						<div className={css.image_container}>
-							<Image
-								src={artwork.content.cover?.filename}
-								alt={artwork.content.cover?.alt}
-								width={900}
-								height={800}
-								quality={10}
-							/>
-							<img />
+					{artwork.content.cover && (
+						<div className={css.banner}>
+							<div className={css.image_container}>
+								<Image
+									src={artwork.content.cover?.filename}
+									alt={artwork.content.cover?.alt}
+									width={900}
+									height={800}
+									quality={10}
+								/>
+								<img />
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 
 				<PageSection className={css.content}>
@@ -68,7 +95,11 @@ export default function Post({ artwork }: IPostProps) {
 						)}
 
 						<div className={css.sidebar}>
-							{/* <BuySection original={original} prints={prints} /> */}
+							<BuySection
+								artwork={artwork}
+								original={original}
+								prints={prints}
+							/>
 						</div>
 					</div>
 				</PageSection>

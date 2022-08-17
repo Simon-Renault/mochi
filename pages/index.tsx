@@ -21,8 +21,7 @@ import {
 	HomePageStoryblok,
 	PageStoryblok,
 } from "typings/components-schema";
-
-const RELATIONS = ["page.featuredDrawings", "page.featuredArticles"];
+import { RELATIONS } from "@lib/utils";
 
 interface IHomeProps {
 	story: StoryData<PageStoryblok>;

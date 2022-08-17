@@ -1,16 +1,6 @@
-import { shopifyClientQL } from "@lib/shopifyClient";
 import { gql } from "@apollo/client";
 
-export const createCheckoutMutation = gql`
-	mutation checkoutCreate($input: CheckoutCreateInput!) {
-		checkoutCreate(input: $input) {
-			checkout {
-				id
-				webUrl
-			}
-		}
-	}
-`;
+export const createCheckoutMutation = gql``;
 
 export default async function handler(req, res) {
 	try {
@@ -20,10 +10,10 @@ export default async function handler(req, res) {
 			},
 		};
 
-		const data = await shopifyClientQL(createCheckoutMutation, variables);
+		const data = "test";
 
 		res.status(200).json({
-			webUrl: data.checkoutCreate.checkout.webUrl,
+			webUrl: data,
 		});
 	} catch (e) {
 		res.status(500).json({ error: e });

@@ -1,9 +1,6 @@
 import Head from "next/head";
-import { getDatabase, getPage, getBlocks } from "../../lib/notion";
 import css from "./post.module.scss";
-import RenderPage from "../../lib/notionPage";
 import PageSection from "@components/PageSection";
-import { blogPostsDatabaseId } from "@lib/config";
 import PageWrapper from "@components/PageWrapper";
 import { GetStaticProps } from "next/types";
 import {
@@ -18,8 +15,7 @@ import {
 	HomePageStoryblok,
 } from "typings/components-schema";
 import { render } from "storyblok-rich-text-react-renderer";
-
-const RELATIONS = ["page.featuredArticles"];
+import { RELATIONS } from "@lib/utils";
 
 interface IBlogProps {
 	blogpost: StoryData<BlogpostStoryblok>;

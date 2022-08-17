@@ -5,14 +5,16 @@ import { PRINT_VARIANTS } from "@lib/config";
 import { X } from "react-feather";
 import { AnimatePresence, motion } from "framer-motion";
 import classNames from "classnames";
-import { IVariant } from "@lib/types";
 import { Context } from "@lib/shopContext";
-import currency from "currency.js";
+import { IVariant } from "./BuySection";
+import { StoryData } from "@storyblok/react";
+import { ArtworkStoryblok } from "typings/components-schema";
 
 interface IBuyPrintModalProps {
 	show?: boolean;
 	onClose: () => void;
 	title?: string | JSX.Element;
+	artwork: StoryData<ArtworkStoryblok>;
 	prints: IVariant[];
 }
 
@@ -57,17 +59,16 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 					<h3 className={css.title}>Pick a Size :</h3>
 					<div className={css.size_picker}>
 						{prints.map((print, index) => {
-							const mapping = PRINT_VARIANTS[print.size];
+							//@ts-ignore
+							const mapping = PRINT_VARIANTS[print.name];
 							return (
 								<SelectableCard
 									title={mapping.title}
 									dimensions={mapping.dimensions}
-									price={`${
-										currency(print.price.amount, {
-											precision: 0,
-										}).value
-									}€`}
-									isSelected={selectedVariant.id == print.id}
+									price={print.price + `€`}
+									isSelected={
+										selectedVariant.name == print.name
+									}
 									onClick={() => setSelectedVariant(print)}
 									key={`variant-${index}`}
 								/>
@@ -77,7 +78,7 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 					<AnimatePresence exitBeforeEnter>
 						{prints.map((print, index) => {
 							return (
-								selectedVariant.id == print.id && (
+								selectedVariant.name == print.name && (
 									<motion.p
 										initial="initial"
 										animate="animate"
@@ -85,7 +86,8 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 										variants={fadeIn}
 										key={`msg-${index}`}
 									>
-										{PRINT_VARIANTS[print.size].message}
+										{/* @ts-ignore */}
+										{PRINT_VARIANTS[print.name].message}
 									</motion.p>
 								)
 							);
@@ -94,7 +96,7 @@ const BuyPrintModal = (props: IBuyPrintModalProps) => {
 				</main>
 				<footer className={css.footer}>
 					<Button fill onClick={handleAddToCart}>
-						Add to cart — {selectedVariant.price.amount}€
+						Add to cart — {selectedVariant.price}€
 					</Button>
 				</footer>
 			</div>

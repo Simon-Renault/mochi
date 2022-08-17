@@ -3,8 +3,10 @@ import { useState, useContext } from "react";
 import css from "./BuySection.module.scss";
 import BuyPrintModal from "@components/shop/BuyPrintModal";
 import Modal from "@components/Modal";
-import { IVariant } from "@lib/types";
+
 import { Context } from "@lib/shopContext";
+import { StoryData } from "@storyblok/react";
+import { ArtworkStoryblok } from "typings/components-schema";
 
 interface IcardProps {
 	className?: string;
@@ -26,19 +28,26 @@ interface IDividerProps {
 	text: string;
 }
 
+export interface IVariant {
+	name: string;
+	price?: number;
+	quantityLeft?: string;
+	isSelling?: boolean;
+}
+
 const Divider = (props: IDividerProps) => {
 	const { text } = props;
 	return <div className={css.divider}>{text}</div>;
 };
-//
 
 interface IBuySectionProps {
+	artwork: StoryData<ArtworkStoryblok>;
 	original: IVariant;
 	prints: IVariant[];
 }
 
 export default function BuySection(props: IBuySectionProps) {
-	const { original, prints } = props;
+	const { original, prints, artwork } = props;
 	const [showModal, setShowModal] = useState(false);
 	const { addToCart, cartItems } = useContext(Context);
 
@@ -60,7 +69,7 @@ export default function BuySection(props: IBuySectionProps) {
 					<Divider text="or" />
 					{original && (
 						<Button fill outlined onClick={handleAddToCart}>
-							Buy the Original — {original.price.amount}€
+							Buy the Original — {original.price}€
 						</Button>
 					)}
 				</Card>
@@ -79,6 +88,7 @@ export default function BuySection(props: IBuySectionProps) {
 			</div>
 			<Modal show={showModal}>
 				<BuyPrintModal
+					artwork={artwork}
 					prints={prints}
 					onClose={() => setShowModal(false)}
 				/>
